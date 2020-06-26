@@ -1,116 +1,67 @@
-// Week2 Module2
 import React, { Component } from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, Button } from 'reactstrap';
+import { slide as Menu } from 'react-burger-menu';
 import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.toggleNav = this.toggleNav.bind(this); // to make use of toggleNav method, bind is required, toggleNav becomes javascript variables which is called with method below
-        this.toggleModal = this.toggleModal.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
-        
-        this.state = {
-            isNavOpen: false,
-            isModalOpen: false,    // this will track the state of the modal
-        };
-    }
+  constructor(props) {
+    super(props);
 
-    toggleNav() {
-        this.setState({
-          isNavOpen: !this.state.isNavOpen
-        });
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+    this.state = {
+      isMenuOpen: false,
+    };
+  }
+  toggleMenu() {
+    this.setState({
+      isMenuOpen: !this.state.isMenuOpen
+      });
     }
-
-    toggleModal() {
-        this.setState({
-          isModalOpen: !this.state.isModalOpen    // this will change the state of modal to negation of the isModalOpen
-        });
+  closeMenu() {
+      this.setState({isMenuOpen: false})
     }
+  handleStateChange (state) {
+    this.setState({isMenuOpen: state.isOpen})  
+  } 
 
-    handleLogin(event) {
-        this.toggleModal();
-        alert("Username: " + this.username.value + " Password: " + this.password.value
-            + " Remember: " + this.remember.checked);
-        event.preventDefault();
-
-    }
-    
-// 'innerRef={(input) => this.username = input}' - innerRef will retrieve the DOM information which can be further used by react components, this is used for uncontrolled forms, in this the information is not shared with react components but its state is handled by DOM itself
-    render() {
-
-        return(
-            <div>
-                <Navbar dark expand="md">
-                    <div className="container">
-                        <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className="mr-auto" href="/">
-                            <img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion' />
-                        </NavbarBrand>
-                        <Collapse isOpen={this.state.isNavOpen} navbar>
-                            <Nav navbar>
-                                <NavItem>
-                                    <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to='/aboutus'><span className="fa fa-info fa-lg"></span> About Us</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
-                                </NavItem>
-                            </Nav>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
-                                </NavItem>
-                            </Nav>
-                        </Collapse>
-                    </div>
-                </Navbar>
-                <Jumbotron>
-                    <div className="container">
-                        <div className="row row-header">
-                            <div className="col-12 col-sm-6">
-                                <h1>Ristorante con Fusion</h1>
-                                <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
-                            </div>
-                        </div>
-                    </div>
-                </Jumbotron>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
-                    <ModalBody>
-                        <Form onSubmit={this.handleLogin}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={(input) => this.username = input} 
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={(input) => this.password = input} 
-                                />
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" name="remember"
-                                    innerRef={(input) => this.remember = input}  />
-                                    Remember me
-                                </Label>
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Login</Button>
-                        </Form>
-                    </ModalBody>
-                </Modal>
-            </div>
-        );
-    }
+  render () {
+    return (
+      <div>
+        <Navbar dark fixed="top" className="navStyle">
+          <NavbarToggler className="ml-5" onClick={this.toggleMenu} />
+          <NavbarBrand href="/">
+            <h1 className="m-auto italic" >Prarukh</h1>
+          </NavbarBrand>
+          <Nav className="mr-5" navbar>
+              <NavItem>
+              <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+              </NavItem>
+          </Nav>
+      </Navbar>
+      <Menu width="400px" noOverlay isOpen={this.state.isMenuOpen}
+      onStateChange={(state) => this.handleStateChange(state)} disableAutoFocus customBurgerIcon={ false }>
+          <Nav vertical className="navlinkStyle">
+              <h1 className="mt-4" >Prarukh</h1>
+              <hr/>
+            <NavItem>
+                <NavLink className="nav-link" onClick={this.closeMenu} to='/home'>Home</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink className="nav-link"  onClick={this.closeMenu} to='/menu'>Menu</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink className="nav-link" onClick={this.closeMenu} to='/contactus'>Contact Us</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink className="nav-link"  onClick={this.closeMenu} to='/aboutus'>About Us</NavLink>
+            </NavItem>
+          </Nav>
+        </Menu>
+      </div>
+    );
+  }
 }
+
 
 export default Header;

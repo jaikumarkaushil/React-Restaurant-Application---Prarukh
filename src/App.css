@@ -1,3 +1,181 @@
+body {
+    font-Family: "Vollkorn";
+}
+.golden {
+    color: #DAA520;
+}
+.italic {
+    font-style: italic;
+}
+.top-spacing {
+    margin-top: 5%;
+}
+.bottom-spacing {
+    margin-bottom: 4%;
+}
+img {
+    object-fit: cover;
+}
+.center-alignment {
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+/* header component */
+header .bm-menu {
+    background: floralwhite;
+}
+.navbar-dark {
+    background-color: rgba(0,0,0,0.4);
+    height: 12vmin;
+}
+.navbar-toggler {
+    width: 12vmin;
+    height: 10vmin;
+}
+.navbar-toggler-icon {
+    width: 8vmin;
+    height: 8vmin;
+    margin: auto;
+    color: black;
+}
+.navlinkStyle {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-link {
+    margin-top: 30px;
+}
+
+
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+  
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+  }
+  
+  /* General sidebar styles */
+  .bm-menu {
+    background: floralwhite;
+    font-size: 1.8em;
+  }
+  
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #373a47;
+  }
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
+  }
+  
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+/* end */
+
+/* home component */
+.home_cover {
+    height:100vh;
+    background-image: url(http://localhost:3001/assets/images/restaurant_cover.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+}
+
+.home_overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width:100%;
+    z-index:5;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.overlay-alignment {
+    position: relative;
+    top: 20%;
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color: floralwhite;
+    z-index: 10;
+}
+.disableBlur {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+}
+/* section - intro-view */
+.view {
+    position: relative;
+    background-image: url(http://localhost:3001/assets/images/blur-image2.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+}
+
+.intro-view1 {
+    position: absolute;
+    top:10%;
+    left:15%;
+}
+.intro-view2 {
+    position: absolute;
+    top:30%;
+    left:5%;
+    z-index: 10;
+}
+
+.intro-view3 {
+    position: absolute;
+    top:45%;
+    left:25%;
+    z-index: 5;
+}
+/* end */
+/* section - know-more */
+.know-more {
+    height: 100vh;
+    color: floralwhite;
+    background-image: url(http://localhost:3001/assets/images/background-pattern.jpg);
+}
+/* end */
+/* end */
 .row-header{
     margin:0px auto;
     padding:0px auto;
@@ -28,9 +206,7 @@ address{
     color:#0f0f0f;
 }
 
-.navbar-dark {
-    background-color: #512DA8;
-}
+
 
 .page-enter {
     opacity: 0.01;
