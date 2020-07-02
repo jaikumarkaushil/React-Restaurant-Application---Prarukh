@@ -51,9 +51,10 @@ class Main extends Component {
   // redux thunk 7, add the dishesLoading, dishesErrMess for homepage, having multiple dishes and isLoading and errMess for single dish in the dishdetail component 
   render() {
     const HomePage = () => {
+      
       return(
         <Home 
-              dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
+              dishes={this.props.dishes.dishes}
               dishesLoading={this.props.dishes.isLoading}
               dishesErrMess={this.props.dishes.errMess}
               promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}

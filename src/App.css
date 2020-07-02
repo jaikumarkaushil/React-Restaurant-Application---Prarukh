@@ -1,17 +1,51 @@
 body {
     font-Family: "Vollkorn";
 }
+* {
+    box-sizing: border-box;
+}
+.view-heading {
+    font-size: 2.4rem;
+}
+@media screen and (min-width:768px) {
+    .view-heading {
+        font-size: 3rem;
+    }
+}
+.button {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    background: rgb(255,255,255);
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    position: relative;
+    overflow: hidden;
+}
+.button-content {
+    position: relative;
+    z-index: 1;
+}
+.button-content:hover {
+    color: white;
+}
 .golden {
     color: #DAA520;
 }
 .italic {
     font-style: italic;
 }
+.header-spacing {
+    position: absolute;
+    top: 130px;
+}
 .top-spacing {
-    margin-top: 5%;
+    padding-top: 5%;
 }
 .bottom-spacing {
-    margin-bottom: 4%;
+    padding-bottom: 4%;
 }
 img {
     object-fit: cover;
@@ -29,7 +63,7 @@ header .bm-menu {
 }
 .navbar-dark {
     background-color: rgba(0,0,0,0.4);
-    height: 12vmin;
+    height: 100px;
 }
 .navbar-toggler {
     width: 12vmin;
@@ -109,7 +143,7 @@ header .bm-menu {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     filter: blur(4px);
     -webkit-filter: blur(4px);
 }
@@ -140,41 +174,91 @@ header .bm-menu {
 }
 /* section - intro-view */
 .view {
-    position: relative;
     background-image: url(http://localhost:3001/assets/images/blur-image2.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+.view-alignment {
+    position: relative;
+    height: 80vh;
 }
 
 .intro-view1 {
     position: absolute;
+    padding: 0 5%;
     top:10%;
-    left:15%;
+    
 }
 .intro-view2 {
     position: absolute;
     top:30%;
-    left:5%;
+    padding: 0 10%;
     z-index: 10;
 }
 
 .intro-view3 {
     position: absolute;
     top:45%;
-    left:25%;
+    padding: 0 25%;
     z-index: 5;
+}
+.view img {
+    width:500px;
+    height:300px;
+}
+
+@media screen and (max-width:768px) {
+    .view img {
+        width:300px;
+        height:200px;
+    }
+    .view {
+        padding: 0 10%;
+    }
+    .into-text {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+}
+@media screen and (max-width:430px) {
+    .view img {
+        width:200px;
+        height:100x;
+    }
 }
 /* end */
 /* section - know-more */
 .know-more {
-    height: 100vh;
+    height: 100%;
     color: floralwhite;
     background-image: url(http://localhost:3001/assets/images/background-pattern.jpg);
 }
 /* end */
+/* trendslist */
+.trendslist {
+    background-image: url(http://localhost:3001/assets/images/trendslist.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+/* end */
+/* cuisine-gallery */
+.cuisine-gallery {
+    background-image: url(http://localhost:3001/assets/images/trendslist.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
 /* end */
 .row-header{
     margin:0px auto;
@@ -257,3 +341,25 @@ address{
     transform: translate(500px, 0);
     transform: translate3d(500px, 0, 0);
    }
+
+.slide-enter {
+    opacity: 0.01;
+    transform: translateX(100%);
+}
+
+.slide-enter-active {
+    opacity: 1;
+    transition: all 3000ms ease-in;
+    transform: translateX(-50%);
+}
+
+.page-exit {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.page-exit-active {
+    opacity: 0.01;
+    transform: translateX(100%);
+    transition: all 300ms ease-out;
+}
