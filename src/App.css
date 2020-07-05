@@ -12,6 +12,9 @@ body {
         font-size: 3rem;
     }
 }
+.title {
+    font-size: 1.1rem;
+}
 .button {
     display: inline-block;
     padding: .75rem 1.25rem;
@@ -23,6 +26,18 @@ body {
     letter-spacing: .15rem;
     position: relative;
     overflow: hidden;
+}
+.button-active {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    position: relative;
+    overflow: hidden;
+    background-color: #DAA520;
 }
 .button-content {
     position: relative;
@@ -54,6 +69,13 @@ img {
     width: 100%;
     display:flex;
     flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+.center-aligment-row {
+    width: 100%;
+    display:flex;
+    flex-direction:row;
     align-items:center;
     justify-content:center;
 }
@@ -258,6 +280,10 @@ header .bm-menu {
     background-size: cover;
     height: 100%;
     overflow: hidden;
+}
+.cuisine-gallery .card {
+    height: 400px;
+    margin-bottom: 10%;
 }
 /* end */
 .row-header{
