@@ -1,12 +1,21 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
-import { Link } from 'react-router-dom';
-
+import { Card, CardBody, CardImg, CardTitle, CardText } from 'reactstrap';
+import Contact from './ContactComponent';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-import { Fade, Stagger } from 'react-animation-components';
+import { Fade } from 'react-animation-components';
+import Trigger from '../styles/Trigger';
+import DiagonalSwipe from '../styles/diagonalSwipe';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { Slide } from 'react-awesome-reveal';
+import { HashLink} from 'react-router-hash-link';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 
-function RenderLeader({Leader, isLoading, errMess}) {
+
+function RenderLeader({leader, isLoading, errMess}) {
+    
     if (isLoading)
         return(
                 <Loading />
@@ -19,27 +28,39 @@ function RenderLeader({Leader, isLoading, errMess}) {
     }
     else
         return (
-            <Media tag="li">
-                <Media left middle>
-                    <Media object src={baseUrl + Leader.image} alt={Leader.name} />
-                </Media>
-                <Media body className="ml-5">
-                    <Media heading><strong>{Leader.name}</strong></Media>
-                    <p>{Leader.designation}</p>
-                    <p>{Leader.description}</p>
-                </Media>
-            </Media>
+            <Card key={leader.id} className="mx-xl-4 mx-lg-3 mx-md-1" >
+                <CardImg width="100%" height="300vmin" height-md="auto" top src={baseUrl + leader.image} alt={leader.name} />
+                <CardBody >
+                    <CardTitle><h3>{leader.name}</h3></CardTitle>
+                    <CardText className="d-none d-md-block">{leader.description}</CardText>
+                </CardBody>
+            </Card>
         )
 }
 
 function LeaderList(props) {
-
+    var settings = {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+            {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                speed: 500,
+                infinite: true,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                }
+            }
+        ]
+    };
     const leaders = props.leaders.leaders.map((leader) => {
         return (
             <Fade in key={leader._id}>
-                <div key={leader._id} className="col-12 mt-2">
-                        <RenderLeader Leader={leader} />
-                </div>
+                <RenderLeader leader={leader} />
             </Fade>
         );
     });
@@ -63,56 +84,103 @@ function LeaderList(props) {
     }
     else
         return(
-            <Media list>
-                <Stagger in>
-                    {leaders}
-                </Stagger>
-            </Media>
+            <Slider {...settings} className="container chefs">
+                {leaders}
+            </Slider>
         );
 }
 
 function About(props) {
-    //Task3
     return(
-        <div className="container">
-            <div className="row">
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>About Us</BreadcrumbItem>
-                </Breadcrumb>
-                <div className="col-12">
-                    <h3>About Us</h3>
-                    <hr />
-                </div>                
-            </div>
-            <div className="row row-content">
-                <div className="col-12 col-md-6">
-                    <h2>Our History</h2>
-                    <p>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
-                    <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
+        <div>
+            <div className="overlay-viewport"></div>
+            <div className="popular_dishes_cover bottom-spacing mb-5">
+                <div className="overlay-content-center">
+                    <div className="text-white text-center container">
+                        <h3 className="bottom-spacing" >A place where your wishes come true!!</h3>
+                        <h4 className="bottom-spacing"><em>“One cannot think well, love well, sleep well, if one has not dined well.” ...</em></h4>
+                        <div className="d-flex-inline d-none d-md-block">
+                            <Link to="send-feedback" smooth={true} offset={-80} duration={2000}>
+                                <button className="button m-4">
+                                    <Trigger >
+                                        <span className="button-content">Send FeedBack</span>  
+                                        <DiagonalSwipe></DiagonalSwipe> 
+                                    </Trigger>
+                                </button>
+                            </Link>
+                            <HashLink smooth to="/home/#reservation" scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+                                <button className="button m-4">
+                                    <Trigger >
+                                        <span className="button-content">Reservation</span>  
+                                        <DiagonalSwipe></DiagonalSwipe> 
+                                    </Trigger>
+                                </button>
+                            </HashLink>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-12 col-md-5">
-                    <Card>
-                        <CardHeader className="bg-primary text-white">Facts At a Glance</CardHeader>
-                        <CardBody>
-                            <dl className="row p-1">
-                                <dt className="col-6">Started</dt>
-                                <dd className="col-6">3 Feb. 2013</dd>
-                                <dt className="col-6">Major Stake Holder</dt>
-                                <dd className="col-6">HK Fine Foods Inc.</dd>
-                                <dt className="col-6">Last Year's Turnover</dt>
-                                <dd className="col-6">$1,250,375</dd>
-                                <dt className="col-6">Employees</dt>
-                                <dd className="col-6">40</dd>
-                            </dl>
-                        </CardBody>
-                    </Card>
+                <div className="center-alignment chefs">
+                    <div className="col-12">
+                        <h2 className="text-center text-white bottom-spacing">Our Chefs</h2>
+                        <LeaderList leaders={props.leaders} />
+                    </div>
+                </div>
+            </div>
+            <div className="row top-spacing mt-md-5">
+                <div className="col-12 container top-spacing mt-md-5">
+                    <h1 className="bottom-spacing italic golden text-center">--- Our Story ---</h1>
+                    <h3 className="bottom-spacing italic text-center">"We provide a wide range of services and food choices to meet the wishes of our customers."</h3>
+                </div>
+                <div className="row bottom-spacing">
+                    <div className="col-12 col-md-6 top-spacing bottom-spacing center-alignment ">
+                        <Slide delay={600} triggerOnce >
+                            <img width="100%" src={baseUrl + "assets/images/OurStory.jpeg"} alt="OurStory.jpg" />
+                        </Slide>
+                    </div>
+                    <div className="col-12 col-md-6 center-alignment top-spacing">
+                        <h5 className="text-center px-2 px-md-5">Our chiefs and staff members consists of highly motivated and skilled specialists who know how to deal with any issue that you may come across. This creates a basis for lasting relationships with our clients built on trust and mutual understanding. We are devoted to prepare world class unique variety of cuisines from all over the world along with the high-quality supporting services that will never let you go unsatisfied.</h5>
+                        <h5 className="text-center px-2 px-md-5 d-none d-md-block">Ea mollit labore fugiat ut sunt cupidatat laborum duis. Sunt occaecat enim mollit reprehenderit nostrud excepteur ea sunt incididunt exercitation non aliquip ut qui. Ex est sunt officia fugiat Lorem labore pariatur nisi ut quis sit exercitation nisi culpa.</h5>
+                    </div>
+                </div>
+                <div className="col-12 d-flex justify-content-center">
+                    <button className="button">
+                        <Trigger>
+                            <span className="button-content">Our Team</span>  
+                            <DiagonalSwipe /> 
+                        </Trigger>
+                    </button>
+                </div>
+                <div className="col-12">
+                    <h1 className="bottom-spacing italic golden text-center">--- Our Results ---</h1>
+                    <h3 className="bottom-spacing italic text-center">"We are very happy about our achievements and don't hide them"</h3>
+                    <div className="d-md-flex justify-content-around p-5">
+                        <div className="col-12 col-md-3 p-md-4 text-center ">
+                            <h2 className="bottom-spacing">421</h2>
+                            <h3>Food Items to serve</h3>
+                            <p>Variety that makes customers happy</p>
+                        </div>
+                        <div className="col-12 col-md-3 p-4 text-center ">
+                            <h2 className="bottom-spacing">2823</h2>
+                            <h3>Prarukh Happy Customers</h3>
+                            <p>In 6 months</p>
+                        </div>
+                        <div className="col-12 col-md-3 p-4 text-center">
+                            <h2 className="bottom-spacing">50</h2>
+                            <h3>Staff Members</h3>
+                            <p>To serve you better</p>
+                        </div>
+                        <div className="col-12 col-md-3 p-4 text-center">
+                            <h2 className="bottom-spacing">15</h2>
+                            <h3>World class Chefs</h3>
+                            <p>To serve you the best</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-12">
                     <Card>
                         <CardBody className="bg-faded">
-                            <blockquote className="blockquote">
-                                <p className="mb-0">You better cut the pizza in four pieces because
+                            <blockquote className="blockquote text-center">
+                                <p>You better cut the pizza in four pieces because
                                     I'm not hungry enough to eat six.</p>
                                 <footer className="blockquote-footer">Yogi Berra,
                                 <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
@@ -123,12 +191,8 @@ function About(props) {
                     </Card>
                 </div>
             </div>
-            <div className="row row-content">
-                <div className="col-12">
-                    <h2>Corporate Leadership</h2>
-                </div>
-                <LeaderList leaders={props.leaders} />
-            </div>
+            <Contact resetFeedbackForm={props.resetFeedbackForm} postFeedback={props.postFeedback} />
+            
         </div>
     );
 }

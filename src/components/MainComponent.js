@@ -1,9 +1,8 @@
 // 2.1 this file will contain/store all the state properties for all the child components
 import React, { Component } from 'react';
-import Home from './HomeComponent'; //w2.4
+import Home from './HomeComponent';
 import Menu from './MenuComponent';
-import Contact from './ContactComponent';
-import About from './AboutComponent'; // Task1
+import About from './AboutComponent';
 import Dishdetail from './DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
@@ -13,10 +12,9 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // Now, the main component will obtain the state information from redux store - Flux architecture
 // states were used to store the local information/ properties that the component make use of in the project.
 
-import { postFeedback, postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';  //redux action 4
+import { postReservation, postFeedback, postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';  //redux action 4
 
-import { actions } from 'react-redux-form'; // react-redux-from revisited 2
-//this will map the redux store's state into props that will become availabe to my component.
+import { actions } from 'react-redux-form';
 const mapStateToProps = state => {
     return {
       dishes: state.dishes,
@@ -31,8 +29,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
   postFeedback: (firstname, lastname, telnum, email, agree, contactType, message, date) => dispatch(postFeedback(firstname, lastname, telnum, email, agree, contactType, message, date)),
-  fetchDishes: () => { dispatch(fetchDishes())},
+  postReservation: (firstname, lastname, telnum, email, agree, contactType, message, date) => dispatch(postReservation(firstname, lastname, telnum, email, agree, contactType, message, date)),
   resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },
+  resetReservationForm: () => { dispatch(actions.reset('reservation')) },
+  fetchDishes: () => {dispatch(fetchDishes())},
   fetchComments: () => {dispatch(fetchComments())},
   fetchPromos: () => {dispatch(fetchPromos())},
   fetchLeaders: () => {dispatch(fetchLeaders())}
@@ -57,12 +57,14 @@ class Main extends Component {
               dishes={this.props.dishes.dishes}
               dishesLoading={this.props.dishes.isLoading}
               dishesErrMess={this.props.dishes.errMess}
-              promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
+              promotions={this.props.promotions.promotions}
               promoLoading={this.props.promotions.isLoading}
               promoErrMess={this.props.promotions.errMess}
               leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
               leaderLoading={this.props.leaders.isLoading}
               leaderErrMess={this.props.leaders.errMess}
+              resetReservationForm={this.props.resetReservationForm} 
+              postReservation={this.props.postReservation}
           />
       );
     }
@@ -87,11 +89,14 @@ class Main extends Component {
           <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <Switch>
               <Route path="/home" component={HomePage} /> {/*w2.4 Configuring the route for home*/}
-              <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} /> {/*Using arrow function we can pass the props to the child compoennts */}
-              <Route path="/menu/:dishId" component={DishWithId} />
-              <Route path="/contactus" component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} /> } /> {/*No props are going to pass on*/}
-              <Route path="/aboutus" component={() => <About leaders={this.props.leaders} />} />  {/*W2 Assignment 2, Task1*/}
-              <Redirect to="/home" />
+              <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes.dishes}
+                                                              dishesLoading={this.props.dishes.isLoading}
+                                                              dishesErrMess={this.props.dishes.errMess}
+                                                              resetReservationForm={this.props.resetReservationForm} 
+                                                              postReservation={this.props.postReservation} />} />
+              {/* <Route path="/menu/:dishId" component={DishWithId} /> */}
+              <Route path="/aboutus" component={() => <About leaders={this.props.leaders} />} /> 
+              <Redirect to="/home"/>
             </Switch>
           </CSSTransition>
         </TransitionGroup>

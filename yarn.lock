@@ -2888,6 +2888,11 @@ brorand@^1.0.1:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
 
+browser-or-node@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/browser-or-node/-/browser-or-node-1.3.0.tgz#f2a4e8568f60263050a6714b2cc236bb976647a7"
+  integrity sha512-0F2z/VSnLbmEeBcUrSuDH5l0HxTXdQQzLjkmBR4cYfvg1zJrKSlmIZFqyFR8oX0NrwPhy3c3HQ6i3OxMbew4Tg==
+
 browser-process-hrtime@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
@@ -7609,6 +7614,51 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+lg-autoplay.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lg-autoplay.js/-/lg-autoplay.js-1.2.0.tgz#1024bfb8894a9600a27bb2867256f03da747c750"
+  integrity sha512-B7KGZhaq69Kv+SGAKb7kmOT3E0CJBFTa3HnmQFSVjpn1tkWm7GtcDRXYtEDcjRSixFHN6M0X/uFji/4uYk6vpg==
+
+lg-fullscreen.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lg-fullscreen.js/-/lg-fullscreen.js-1.2.0.tgz#9283f1daaa7d53c5ffa9ed0604ec99053ea0b404"
+  integrity sha512-cn4aOV4kuBAdtWJ7VcmmNfnIlNOF9pfa58Y708viZo9DrFQP3rDrwgx3fnol7GlBH+C/LwnGxy+bjaD4Abv3zg==
+
+lg-hash.js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lg-hash.js/-/lg-hash.js-1.0.0.tgz#2dc56e1066c30211e37a4ec42e3293b2d99e7c62"
+  integrity sha1-LcVuEGbDAhHjek7ELjKTstmefGI=
+
+lg-pager.js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lg-pager.js/-/lg-pager.js-1.0.0.tgz#62a5f07f9f976cae7cfdb1dbd3e208b6c12fc7ab"
+  integrity sha1-YqXwf5+XbK58/bHb0+IItsEvx6s=
+
+lg-share.js@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/lg-share.js/-/lg-share.js-1.3.0.tgz#5e2047236400743acd3325b189447cb9bb38901a"
+  integrity sha512-5pnbiZ/LdBZiPhvVp/EAnod2yrBczN2YCqvM6f4TX4VbPe4b/9r0jJtvBvxOPMAxRNZrF3/WvOnHcFfvdSc4uA==
+
+lg-thumbnail.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lg-thumbnail.js/-/lg-thumbnail.js-1.2.0.tgz#863bda569ee868229a4f80152e4c026a4c47f686"
+  integrity sha512-qmNFbjLv1spCf3sB8HRX9vW8UtKcgq7qJIg10jLqCozSquhTJwSPUb5vyPgl3cZpgLFjRMiOpIRgBjGrX4inNQ==
+
+lg-video.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lg-video.js/-/lg-video.js-1.2.0.tgz#84bd461216e3b92d01a5590d73980b611d6474fc"
+  integrity sha512-BkitJqHmWFEm2jwIYv3+vrnwJZ1aDWqfb67QJdYY/eGyf0f+84qWylbMWoJHyZDpdN5wsBR3gF1/I6z0ZDoPqQ==
+
+lg-zoom.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lg-zoom.js/-/lg-zoom.js-1.2.0.tgz#ba67b5b96acc93774a2c4021eae85ac3cfddd3ed"
+  integrity sha512-IDT2mcvkUTcE8R5QGbqgHE6VeWEG6xykvq9xKHCW3G4xDwGQoQY0VOH+41aNHN+z9ilD6/Tu8mtsF2bnJyv/nw==
+
+lightgallery.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lightgallery.js/-/lightgallery.js-1.2.0.tgz#060e1f6298022111d5786a27a7ad6cf6b5e70154"
+  integrity sha512-Zc3zytzCOb7das1Ru8JxE/McfCBPvoVnjuAGlXFaVks4FfyS4xTphzTunQU4Goc6LaPdf0hD5hQfWGyDwSsPKw==
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
@@ -7738,6 +7788,11 @@ lodash.templatesettings@^4.0.0:
   integrity sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
   dependencies:
     lodash._reinterpolate "^3.0.0"
+
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
 lodash.topath@~4.5.2:
   version "4.5.2"
@@ -9634,7 +9689,7 @@ postcss-value-parser@^3.0.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.1.tgz#9ff822547e2893213cf1c30efa51ac5fd1ba8281"
   integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
 
-postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0:
+postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2, postcss-value-parser@^4.0.3, postcss-value-parser@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.1.0.tgz#443f6a20ced6481a2bda4fa8532a6e55d789a2cb"
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
@@ -9762,7 +9817,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9975,6 +10030,11 @@ react-burger-menu@^2.6.17:
     prop-types "^15.7.2"
     snapsvg-cjs "0.0.6"
 
+react-card-flip@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-card-flip/-/react-card-flip-1.0.10.tgz#f3eab968f2cba6de6eccb84cf73bcaf6b53fb974"
+  integrity sha512-BqK6PmP+L/xmcH1AoMuirbxRuDIiaNy3r8734GJQqEyIWoW8L4j2c/di6mbNg+I2rGue3tLH1I9QbJLd7M89ww==
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
@@ -10042,6 +10102,27 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-lightgallery@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-lightgallery/-/react-lightgallery-0.7.0.tgz#da9c443560e9211295cca9c6345b071f1a5d1658"
+  integrity sha512-K9AekdLbLRpoPr6ECZ1jxCJWhYG4uw16YXgpsE6SOlHg1ImoXw4tWvEy+uZ5/VcgU3iqGrunFw9W1Pvwh/fgLg==
+  dependencies:
+    browser-or-node "^1.1.0"
+    lg-autoplay.js "^1.2.0"
+    lg-fullscreen.js "^1.2.0"
+    lg-hash.js "^1.0.0"
+    lg-pager.js "^1.0.0"
+    lg-share.js "^1.3.0"
+    lg-thumbnail.js "^1.2.0"
+    lg-video.js "^1.2.0"
+    lg-zoom.js "^1.2.0"
+    lightgallery.js "^1.2.0"
+    lodash "^4.17.15"
+    prop-types "^15.7.2"
+    react "^16.13.1"
+    react-dom "^16.13.1"
+    uniqid "^5.0.3"
+
 react-native-segmented-control-tab@^3.2.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/react-native-segmented-control-tab/-/react-native-segmented-control-tab-3.4.1.tgz#b6e54b8975ce8092315c9b0a1ab58b834d8ccf8e"
@@ -10104,6 +10185,13 @@ react-router-dom@^5.2.0:
     react-router "5.2.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-router-hash-link@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-router-hash-link/-/react-router-hash-link-1.2.2.tgz#7a0ad5e925d49596d19554de8bc6c554ce4f8099"
+  integrity sha512-LBthLVHdqPeKDVt3+cFRhy15Z7veikOvdKRZRfyBR2vjqIE7rxn+tKLjb6DOmLm6JpoQVemVDnxQ35RVnEHdQA==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-router@5.2.0:
   version "5.2.0"
@@ -10180,6 +10268,14 @@ react-scripts@3.4.1:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.1.2"
+
+react-scroll@^1.7.16:
+  version "1.7.16"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.7.16.tgz#814f0b97ed171aad1f27e45dad16a8444817fec8"
+  integrity sha512-f4M5AdL+3cw3MJ7c/T0hPMY2iHCeQLDXV13lRanAFQ6JIt9xyAdHCpTH9mLUQt9SQh4pRarD+Qc7KhU6qMx3Yg==
+  dependencies:
+    lodash.throttle "^4.1.1"
+    prop-types "^15.5.8"
 
 react-slick@^0.26.1:
   version "0.26.1"
@@ -10652,6 +10748,13 @@ rework@1.0.1:
   dependencies:
     convert-source-map "^0.3.3"
     css "^2.0.0"
+
+rfs@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/rfs/-/rfs-9.0.3.tgz#6200ef283a081b01cbf07e2e3c7fe4c14cc3f07b"
+  integrity sha512-LL3eu6iqrJ0I/duHollplc2Tjc33AS7HmfqiAtHZD34Sq+L4+/96nYEN7YfT+vCLbeeB4mbMFpeg2mtxn5qNGA==
+  dependencies:
+    postcss-value-parser "^4.0.3"
 
 rgb-regex@^1.0.1:
   version "1.0.1"
@@ -11952,6 +12055,11 @@ uniq@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/uniq/-/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
   integrity sha1-sxxa6CVIRKOoKBVBzisEuGWnNP8=
+
+uniqid@^5.0.3:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-5.2.0.tgz#0d0589a7e9ce07116848126764fbff0b68e74329"
+  integrity sha512-LH8zsvwJ/GL6YtNfSOmMCrI9piraAUjBfw2MCvleNE6a4pVKJwXjG2+HWhkVeFcSg+nmaPKbMrMOoxwQluZ1Mg==
 
 uniqs@^2.0.0:
   version "2.0.0"

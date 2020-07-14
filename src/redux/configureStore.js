@@ -7,7 +7,7 @@ import { Leaders } from './leaders';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { InitialFeedback } from './forms';
-
+import { InitialReserve } from './reserveform';
 export const ConfigureStore = () => {
     const store = createStore(
         // combine reducer maps the overall smaller, simpler reducer function into various properties in the overall.
@@ -17,7 +17,8 @@ export const ConfigureStore = () => {
             promotions: Promotions,
             leaders: Leaders,
             ...createForms({
-                feedback: InitialFeedback
+                feedback: InitialFeedback,
+                reservation: InitialReserve
             })
         }),
         applyMiddleware(thunk, logger)  //redux thunk 1

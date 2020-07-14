@@ -1,73 +1,569 @@
-// the component are initialized with capital letters.
-import React from 'react';
-//  media is module from reactstrap which is helpful in creating the list of objects.
-// media is replaced with card 
-import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Loading } from './LoadingComponent';
-
+import React, { Component } from 'react';
+import { Collapse, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay, CardSubtitle, Breadcrumb, BreadcrumbItem, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Fade } from 'react-awesome-reveal';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { FadeTransform } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
-// fetch 7, update the src
-function RenderMenuItem({dish}) {
-    return(
-        <Card>
-            <Link to={`/menu/${dish.id}`}> {/*whatever is inside the backquote will get evaluated through javascript and output is given.*/}
-                <CardImg  width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                <CardImgOverlay>
-                    <CardTitle>{dish.name}</CardTitle>
-                </CardImgOverlay>
-            </Link>
-        </Card>
-        )
-}
-// redux thunk 9, add the dishes.dishes and conditions for isLoading, error message and menu objects.
-const Menu = (props) => {
-    const menu = props.dishes.dishes.map((dish) => {  // props is used to pass the parent information to menu component. A Map object iterates its elements in insertion order — a for...of loop returns an array of [key, value] for each iteration.
-        return (
-            // key attribute is used whenever there is array of objects, the key helps when React is rendering these items on the screen and helps in recognizing the items uniquely for each item
-            <div className="col-12 col-md-5 m-1" key={dish.id}>
-                <RenderMenuItem dish={dish} />
-            </div>
-        );
-    });
+import Trigger from '../styles/Trigger';
+import DiagonalSwipe from '../styles/diagonalSwipe';
+import { Link as Linking} from 'react-router-dom';
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { Loading } from './LoadingComponent';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import ReservationForm from './ReservationForm';
 
-    if (props.dishes.isLoading) {
-            return(
-                <div className="container">
-                    <div className="row">
-                        <Loading />
-                    </div>
-                </div>
-            )
-        }
-        else if (props.dishes.errMess) {
-            return(
-                <div className="container">
-                    <div className="row">
-                        <h4>{props.dishes.errMess}</h4>
-                    </div>
-                </div>
-            )
-        }
+import { LightgalleryItem, ItemTitle, LinesEllipsis } from "react-lightgallery";
+import Dishdetail from './DishdetailComponent';
+
+
+function NextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+        className={className}
+        style={{ ...style, display: "block", position: "absolute", top: "50vh", right: "5%" }}
+        onClick={onClick}
+        />
+    );
+}
+function PrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+        className={className}
+        style={{ ...style, display: "block", position: "absolute", top: "50vh", left: "5%", zIndex: "4" }}
+        onClick={onClick}
+        />
+    );
+}
+
+const MenuCarousel =({dishesLoading, dishesErrMess}) => {
     
-    else
-        return (
+    var settings = {
+        dots: true,
+        slidesToShow: 1,
+        arrows: true,
+        autoplay:true,
+        autoplaySpeed:3000,
+        pauseOnFocus:true,
+        slidesToScroll: 1,
+        fade: true,
+        
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        appendDots: dots => (
+                <ul style={{
+                    position: "absolute",
+                    top:"95vh",
+            }}> {dots} </ul>
+        ),
+        customPaging: function(i) {
+            return (
+                <a>
+                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src={`${baseUrl}/assets/images/breakfast2.jpg`} />
+                </a>
+            );
+            },
+        responsive: [
+            {
+                breakpoint: 678,
+                settings: {
+                    dots: false,
+                    slidesToShow: 1,
+                    arrows: false,
+                    autoplay:true,
+                    autoplaySpeed:3000,
+                    pauseOnFocus:true,
+                    slidesToScroll: 1,
+                    fade: true,
+                    }
+                },
+        ]
+        
+    };
+    if (dishesLoading) {
+        return(
             <div className="container">
                 <div className="row">
-                    <Breadcrumb>
-                        <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active >Menu</BreadcrumbItem>
-                    </Breadcrumb>
-                    <div className="col-12">
-                        <h3>Menu</h3>
-                        <hr />
+                    <Loading />
+                </div>
+            </div>
+        )
+    }
+    else if (dishesErrMess) {
+        return(
+            <div className="container">
+                <div className="row">
+                    <h4>{dishesErrMess}</h4>
+                </div>
+            </div>
+        )
+    }
+
+    else
+        return(
+            <Slider {...settings}>
+                <div className="menu_cover_1">
+                    <div className="home_overlay">
+                        <div className="content-center text-center">
+                            <h1 className="text-white top-spacing">Breakfast</h1>
+                            <h3 className="text-white">"Breakfast was only worth having when somebody else made it for you ....."</h3>
+                            <Link to="menu" smooth={true} offset={-20} duration={2000} className="d-flex justify-content-center top-spacing bottom-spacing">
+                                <button className="button">
+                                    <Trigger >
+                                        <span className="button-content">Menu</span>  
+                                        <DiagonalSwipe></DiagonalSwipe> 
+                                    </Trigger>
+                                </button>
+                            </Link>
+                            <Link to="menu" smooth={true} offset={-20} duration={600} className="text-center mt-5 text-white">
+                                <i className="fa fa-arrow-down fa-lg top-spacing" aria-hidden="true"></i>
+                            </Link>
+                        </div>
                     </div>
                 </div>
+                <div className="menu_cover_2">
+                    <div className="home_overlay">
+                        <div className="content-center text-center">
+                            <h1 className="text-white">Lunch</h1>
+                            <h3 className="text-white">"All you need is love, but sometimes, a lunch break works, too."</h3>
+                            <Link to="menu" smooth={true} offset={-20} duration={2000} className="d-flex justify-content-center top-spacing bottom-spacing">
+                                <button className="button">
+                                    <Trigger >
+                                        <span className="button-content">Menu</span>  
+                                        <DiagonalSwipe></DiagonalSwipe> 
+                                    </Trigger>
+                                </button>
+                            </Link>
+                            <Link to="menu" smooth={true} offset={-20} duration={600} className="text-center mt-5 text-white">
+                                <i className="fa fa-arrow-down fa-lg top-spacing" aria-hidden="true"></i>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="menu_cover_3">
+                    <div className="home_overlay">
+                        <div className="home_overlay">
+                            <div className="content-center text-center">
+                                <h1 display-3 className="text-white">Dinner</h1>   
+                                <h3 className="text-white">"If a restaurant offers crayons, I always take them and color throughout the meal. It beats talking to people I came to dinner with"</h3>
+                                <Link to="menu" smooth={true} offset={-20} duration={2000} className="d-flex justify-content-center top-spacing bottom-spacing">
+                                    <button className="button">
+                                        <Trigger >
+                                            <span className="button-content">Menu</span>  
+                                            <DiagonalSwipe></DiagonalSwipe> 
+                                        </Trigger>
+                                    </button>
+                                </Link>
+                                <Link to="menu" smooth={true} offset={-20} duration={600} className="text-center mt-5 text-white">
+                                    <i className="fa fa-arrow-down fa-lg top-spacing" aria-hidden="true"></i>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Slider>
+        )
+}
+
+function RenderMenuItem({dish, toggleHover, hover, selectedDish, onDishSelect}) {
+        
+            return(
+                
+                <div>
+                    <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
+                    <span className="d-flex top-spacing justify-content-center bottom-spacing" onClick={() => onDishSelect(dish.id)} ><i className="fa fa-search-plus"></i></span>
+                    {selectedDish === dish.id ?
+                        <div className="main-container">
+                            <Card className="accordion-img">
+                                <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
+                                    <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
+                                        {hover === dish.id ? 
+                                            <Fade className="text-white transparent-black-overlay">
+                                                <CardBody >
+                                                    <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle>
+                                                    <CardText><p>{dish.description}</p></CardText>
+                                                        <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {dish.price}</h5></span>
+                                                        <a><button>Gallery</button></a>
+                                                        
+                                                </CardBody>
+                                            </Fade>
+                                            : null
+                                        }
+                                    </CardImgOverlay>
+                                </Card>
+                                <div className="accordion-des container">
+                                    <Card className="row flex-row">
+                                        <div className="col-md-3 col-sm-6 col-12 p-4">
+                                            <CardImg width="100%" height="200px" src={baseUrl + dish.image} alt={dish.name} />
+                                        </div>
+                                        <div className="col-md-9 col-sm-6 col-12">
+                                            <CardBody className="row">
+                                                <Col sm={12} md={7} lg={8}>
+                                                    {dish.label === "Hot" ? <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3> <span className="badge badge-danger">HOT</span></CardTitle> : <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle> }
+                                                    {dish.designation ? <CardSubtitle>{dish.designation}</CardSubtitle> : null }
+                                                    <CardText className="d-none d-md-block"><h4> {dish.description}</h4></CardText>
+                                                </Col>
+                                                <Col sm={12} md={5} lg={4} className="d-flex justify-content-md-center">
+                                                    <h4> Rs. {dish.price}</h4>
+                                                </Col>
+                                            </CardBody>
+                                        </div>
+                                    </Card>
+                                </div>
+                                
+                        </div>
+                        
+                    :
+                        
+                            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"}>
+                                <Card className="accordion-img">
+                                    <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
+                                        <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
+                                            {hover === dish.id ? 
+                                                <Fade className="text-white transparent-black-overlay">
+                                                    <CardBody >
+                                                        <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle>
+                                                        <CardText><p>{dish.description}</p></CardText>
+                                                            <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {dish.price}</h5></span>
+                                                            <a><button>Gallery</button></a>
+                                                            
+                                                    </CardBody>
+                                                </Fade>
+                                                : null
+                                            }
+                                        </CardImgOverlay>
+                                </Card>                   
+                            </LightgalleryItem>
+                        
+
+        }
+        </div>
+            
+    
+            )
+        
+        
+}
+function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, subCategory, toggleHover, hover, selectedDish, onDishSelect}) {
+    const cuisinedishes = dishes.filter((filtereddish) => {
+        if(cuisine) {
+            return(
+                filtereddish.cuisine === cuisine
+            )
+        }
+        if(category) {
+            return(
+                filtereddish.category === category
+            )
+        }
+        else {
+            return filtereddish.id
+        }
+    }).filter((filtereddish) => {
+        if(cuisine) {
+            if(category) {
+                if(category === 'Lunch/Dinner' && subCategory) {
+                    return(
+                        filtereddish.subCategory === subCategory
+                    )
+            }
+                else
+                    return(
+                        filtereddish.category === category
+                    )
+            }           
+            else
+                return(
+                    filtereddish.cuisine === cuisine
+                )
+        }
+        
+        if(category === 'Lunch/Dinner' && subCategory) {
+                return(
+                    filtereddish.subCategory === subCategory
+                )
+        }
+        
+        else {
+            return filtereddish.id
+        }
+    }).map((dish) => {
+        return(
+            <Collapse isOpen={true} style={{height: "max-content"}} className="col-8 col-sm-6 col-md-4 col-lg-3 p-0 bg-white">
+                    <Fade>
+                        <FadeTransform
+                            in
+                            transformProps={{
+                                exitTransform: 'scale(0.5) translateY(-50%)'
+                            }}>
+                                    <RenderMenuItem 
+                                        dish={dish} 
+                                        toggleHover={toggleHover}
+                                        hover={hover}
+                                        selectedDish={selectedDish}
+                                        onDishSelect={onDishSelect}
+                                    />
+                        </FadeTransform>
+                    </Fade>
+            </Collapse>
+        )
+    })    
+    if (dishesLoading) {
+        return(
+            <div className="container">
                 <div className="row">
-                    {menu}  {/* this is a javascript variable that we have defined in the const menu above. */}
-                </div>    
+                    <Loading />
+                </div>
             </div>
-        );
+        )
+    }
+    else if (dishesErrMess) {
+        return(
+            <div className="container">
+                <div className="row">
+                    <h4>{dishesErrMess}</h4>
+                </div>
+            </div>
+        )
+    }
+
+    else
+        return (
+                <div className="bottom-spacing row ">
+                    {cuisinedishes}  {/* this is a javascript variable that we have defined in the const menu above. */}
+                </div>    
+            );
+};
+
+class Menu extends Component {
+    constructor(props) {
+        super(props);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.onDishSelect = this.onDishSelect.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.toggleHover = this.toggleHover.bind(this);
+        this.toggleCategory = this.toggleCategory.bind(this);
+        this.toggleSubCategory = this.toggleSubCategory.bind(this);
+        this.state = { 
+            selectedDish: null,
+            hover: null,
+            cuisine: "",
+            cuisines: ["Indian", "Italian", "Chinese", "Thai"],
+            category: "",
+            categories: ["Breakfast", "Lunch/Dinner"],
+            subCategory: "",
+            subCategories: {
+                "All": ["Starters", "Starters/Main Course", "Main Course", "Pasta", "Pizza"],
+                "Indian": ["Starters", "Main Course"],
+                "Italian": ["Starters", "Pasta", "Pizza"],
+                "Chinese": ["Starters", "Starters/Main Course"],
+                "Thai": ["Starters", "Main Course" ]
+            }
+            
+        }
+    }
+    onDishSelect(dish) {
+        this.setState({selectedDish: dish});
+    }
+
+    handleLogin(event) {
+        this.toggleMenuItem();
+        alert("Username: " + this.username.value + " Password: " + this.password.value
+            + " Remember: " + this.remember.checked);
+        event.preventDefault();
+
+    }
+
+    toggleHover(e) {
+        let event = e.target.dataset.event;
+        this.setState(
+            {
+                hover:  this.state.hover  === String(event) ? false : Number(event),
+            }
+        )
+    }
+
+    toggleClass() {
+        this.setState({active: !this.state.active})
+    }
+
+    toggle(e) {
+        let event = e.target.dataset.event;
+        this.setState({ 
+            cuisine: this.state.cuisine === String(event) ? "" : String(event),
+            subCategory: ""            
+        });
+    }
+    toggleCategory(e) {
+        let event = e.target.dataset.event;
+        this.setState({ 
+            category: this.state.category === String(event) ? "" : String(event),
+            subCategory: ""
+        });
+    }
+    toggleSubCategory(e) {
+        let event = e.target.dataset.event;
+        this.setState({ 
+            subCategory: this.state.subCategory === String(event) ? "" : String(event)
+        });
+    }
+    render() {
+        const {cuisines, categories, subCategories} = this.state;
+        return( 
+            <div>
+                <MenuCarousel />
+                <section name="menu">
+                    <Row className="top-spacing bottom-spacing bg-white d-flex justify-content-center mx-md-5">
+                        <Col className="mx-2 col-12"> 
+                            <h2 className="text-center italic golden" >-- Menu --</h2>
+                            <Col className="center-alignment">
+                                {categories.map(index => {
+                                    return(
+                                        <button className={this.state.category === index ? "button-active m-4" : "button m-4"} onClick={this.toggleCategory} data-event={index}>
+                                            <Trigger onClick={this.toggleCategory}>
+                                                <span onClick={this.toggleCategory} data-event={index} className="button-content">{index}</span>  
+                                                <DiagonalSwipe onClick={this.toggleCategory} data-event={index}></DiagonalSwipe> 
+                                            </Trigger>
+                                        </button>
+                                    )
+                                })}
+                            </Col>
+                        </Col>
+                        <Col className="col-9" >
+                            <Row className="d-flex justify-content-around bottom-spacing">
+                                {cuisines.map(index => {
+                                    return (
+                                        <button className={this.state.cuisine === index ? "button-active" : "button"} onClick={this.toggle} data-event={index}>
+                                            <Trigger onClick={this.toggle}>
+                                                <span onClick={this.toggle} data-event={index} className="button-content">{index}</span>  
+                                                <DiagonalSwipe onClick={this.toggle} data-event={index}></DiagonalSwipe> 
+                                            </Trigger>
+                                        </button>
+                                    )
+                                })}
+                                
+                            </Row>
+                            {console.log(this.state.hover)}
+                            <div className="center-alignment">
+                                    {
+                                        this.state.category === 'Lunch/Dinner' && this.state.cuisine === "" ?
+                                            <div className="d-flex justify-content-around">
+                                                {subCategories.All.map(index => {
+                                                    return(
+                                                        <button className={this.state.subCategory === index ? "button-active m-4" : "button m-4"} onClick={this.toggleSubCategory} data-event={index}>
+                                                            <Trigger onClick={this.toggleSubCategory}>
+                                                                <span onClick={this.toggleSubCategory} data-event={index} className="button-content">{index}</span>  
+                                                                <DiagonalSwipe onClick={this.toggleSubCategory} data-event={index}></DiagonalSwipe> 
+                                                            </Trigger>
+                                                        </button>
+                                                    )
+                                        })}
+                                                
+                                            </div>
+                                        : null
+                                    }
+                                    {
+                                        this.state.category === 'Lunch/Dinner' && this.state.cuisine === "Indian" ?
+                                            <div className="d-flex justify-content-around">
+                                                {subCategories.Indian.map(index => {
+                                                    return(
+                                                        <button className={this.state.subCategory === index ? "button-active m-4" : "button m-4"} onClick={this.toggleSubCategory} data-event={index}>
+                                                            <Trigger onClick={this.toggleSubCategory}>
+                                                                <span onClick={this.toggleSubCategory} data-event={index} className="button-content">{index}</span>  
+                                                                <DiagonalSwipe onClick={this.toggleSubCategory} data-event={index}></DiagonalSwipe> 
+                                                            </Trigger>
+                                                        </button>
+                                                    )
+                                        })}
+                                                
+                                            </div>
+                                        : null
+                                    }
+                                
+                                {
+                                    this.state.category === 'Lunch/Dinner' && this.state.cuisine === 'Italian' ? 
+                                    <div className="d-flex justify-content-around">
+                                        {subCategories.Italian.map(index => {
+                                            return(
+                                                <button className={this.state.subCategory === index ? "button-active m-4" : "button m-4"} onClick={this.toggleSubCategory} data-event={index}>
+                                                    <Trigger onClick={this.toggleSubCategory}>
+                                                        <span onClick={this.toggleSubCategory} data-event={index} className="button-content">{index}</span>  
+                                                        <DiagonalSwipe onClick={this.toggleSubCategory} data-event={index}></DiagonalSwipe> 
+                                                    </Trigger>
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                    : null
+                                }
+                                {
+                                    this.state.category === 'Lunch/Dinner' && this.state.cuisine === 'Chinese' ? 
+                                    <div className="d-flex justify-content-around">
+                                        {subCategories.Chinese.map(index => {
+                                            return(
+                                                <button className={this.state.subCategory === index ? "button-active m-4" : "button m-4"} onClick={this.toggleSubCategory} data-event={index}>
+                                                    <Trigger onClick={this.toggleSubCategory}>
+                                                        <span onClick={this.toggleSubCategory} data-event={index} className="button-content">{index}</span>  
+                                                        <DiagonalSwipe onClick={this.toggleSubCategory} data-event={index}></DiagonalSwipe> 
+                                                    </Trigger>
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                    : null
+                                }
+                                {
+                                    this.state.category === 'Lunch/Dinner' && this.state.cuisine === 'Thai' ? 
+                                    <div className="d-flex justify-content-around">
+                                        {subCategories.Thai.map(index => {
+                                            return(
+                                                <button className={this.state.subCategory === index ? "button-active m-4" : "button m-4"} onClick={this.toggleSubCategory} data-event={index}>
+                                                    <Trigger onClick={this.toggleSubCategory}>
+                                                        <span onClick={this.toggleSubCategory} data-event={index} className="button-content">{index}</span>  
+                                                        <DiagonalSwipe onClick={this.toggleSubCategory} data-event={index}></DiagonalSwipe> 
+                                                    </Trigger>
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                    : null
+                                }
+                                </div>
+                        </Col>
+                    </Row>
+                </section>
+                <section height="100%" className="p-0 bg-white top-spacing bottom-spacing">
+                    <DishesMenu
+                        dishes={this.props.dishes}
+                        dishesLoading={this.props.dishesLoading}
+                        dishesErrMess={this.props.dishesErrMess}
+                        cuisine={this.state.cuisine}
+                        category={this.state.category}
+                        subCategory={this.state.subCategory}
+                        toggleHover={this.toggleHover}
+                        hover={this.state.hover}
+                        selectedDish={this.state.selectedDish}
+                        onDishSelect={this.onDishSelect}
+                        />
+                </section>
+                <section className="book-or-order d-flex flex-row align-items-center">
+                    <ReservationForm
+                        resetReservationForm={this.props.resetReservationForm} 
+                        postReservation={this.props.postReservation}
+                    />
+                </section>
+                <Button outline onClick={this.toggleModal} ><span className="fa fa-pencil fa-lg"></span> Submit Comment</Button>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                
+                </Modal>
+                {console.log(this.state.selectedDish + "hiskj")}
+            </div>
+        )
+        
+    }
 }
 
 export default Menu;

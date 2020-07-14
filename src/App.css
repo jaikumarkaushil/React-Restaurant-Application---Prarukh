@@ -1,20 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+
 body {
-    font-Family: "Vollkorn";
+    font-family: 'lora', serif;
 }
-* {
-    box-sizing: border-box;
+
+@media screen and (max-width: 768){
+    html { font-size: calc( 10px + (12 - 10) * (100vw - 768) / (768 - 100) ); }
+    }
+@media screen and (min-width: 768){
+html { font-size: calc( 10px + (14 - 10) * (100vw - 768) / (1000 - 768) ); }
 }
-.view-heading {
-    font-size: 2.4rem;
+@media screen and (min-width: 1000px){
+
+html { font-size: calc( 10px + (12 - 10) * (100vw - 1000) / (1500 - 1000) ); }
 }
-@media screen and (min-width:768px) {
-    .view-heading {
-        font-size: 3rem;
+   
+/* h1 {
+    font-size: 2.4em;
+}
+@media screen and (max-width:768px) {
+    h1 {
+        font-size: 1.5em;
     }
 }
-.title {
-    font-size: 1.1rem;
+h2 {
+    font-size: 2.1em;
 }
+@media screen and (max-width:768px) {
+    h2 {
+        font-size: 1.35em;
+    }
+}
+h3 {
+    font-size: 1.8em;
+}
+@media screen and (max-width:768px) {
+    h3 {
+        font-size: 1.2em;
+    }
+}
+h4 {
+    font-size: 1.5em;
+}
+@media screen and (max-width:768px) {
+    h4 {
+        font-size: 0.9em;
+    }
+} */
+
 .button {
     display: inline-block;
     padding: .75rem 1.25rem;
@@ -22,9 +55,10 @@ body {
     border: none;
     background: rgb(255,255,255);
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: .15rem;
     position: relative;
+    font-weight: 300;
     overflow: hidden;
 }
 .button-active {
@@ -33,7 +67,7 @@ body {
     border-radius: 1rem;
     border: none;
     text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.2rem;
     letter-spacing: .15rem;
     position: relative;
     overflow: hidden;
@@ -46,6 +80,16 @@ body {
 .button-content:hover {
     color: white;
 }
+.content-center {
+    height:100%;
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:80%;
+    margin: auto;
+}
 .golden {
     color: #DAA520;
 }
@@ -53,17 +97,20 @@ body {
     font-style: italic;
 }
 .header-spacing {
-    position: absolute;
-    top: 130px;
+    position: relative;
+    top: 15%;
 }
 .top-spacing {
     padding-top: 5%;
 }
 .bottom-spacing {
-    padding-bottom: 4%;
+    padding-bottom: 5%;
 }
-img {
+img, .card-img {
     object-fit: cover;
+}
+.row{
+    margin: 0;
 }
 .center-alignment {
     width: 100%;
@@ -85,18 +132,11 @@ header .bm-menu {
 }
 .navbar-dark {
     background-color: rgba(0,0,0,0.4);
-    height: 100px;
+    height: auto;
+    position: fixed;
+    z-index: 20;
 }
-.navbar-toggler {
-    width: 12vmin;
-    height: 10vmin;
-}
-.navbar-toggler-icon {
-    width: 8vmin;
-    height: 8vmin;
-    margin: auto;
-    color: black;
-}
+
 .navlinkStyle {
     width: 75%;
     margin: auto;
@@ -108,7 +148,37 @@ header .bm-menu {
     margin-top: 30px;
 }
 
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 80px;
+    top: 26px;
+    
+  }
 
+@media screen and (max-width:768px) {
+    .bm-burger-button {
+        position: fixed;
+        width: 36px;
+        height: 30px;
+        left: 10%;
+        top: 26px;
+        
+      }
+}
+   
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: white;
+  }
+   
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #a90000;
+  }
+   
   /* Position and sizing of clickable cross button */
   .bm-cross-button {
     height: 24px;
@@ -166,11 +236,14 @@ header .bm-menu {
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
+    overflow: hidden;
+    width:100%;
     filter: blur(4px);
     -webkit-filter: blur(4px);
 }
 
 .home_overlay {
+    background-color: rgb(0,0,0);
     background-color: rgba(0, 0, 0, 0.3);
     height: 100vh;
     width:100%;
@@ -178,6 +251,14 @@ header .bm-menu {
     position: absolute;
     top:0;
     left:0;
+}
+@media screen and (max-width:576px) {
+    .home_cover {
+        height: 125vh;
+    }
+    .home_overlay {
+        height: 125vh;
+    }
 }
 .overlay-alignment {
     position: relative;
@@ -203,6 +284,7 @@ header .bm-menu {
     background-size: cover;
     height: 100vh;
     overflow: hidden;
+    width: 100%;
 }
 .view-alignment {
     position: relative;
@@ -280,10 +362,214 @@ header .bm-menu {
     background-size: cover;
     height: 100%;
     overflow: hidden;
+    width: 100%;
 }
 .cuisine-gallery .card {
-    height: 400px;
-    margin-bottom: 10%;
+    height: auto;
+    margin: 0;
+    border: 0;
+}
+.transparent-black-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+}
+.masonry {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    -moz-column-gap: 0;
+    -webkit-column-gap: 0;
+    column-gap: 0;
+    transition: all .5s ease-in-out;
+    column-fill: initial;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+@media screen and (max-width: 1200px) {
+    .masonry {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+@media screen and (max-width: 768px) {
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+@media screen and (max-width: 576px) {
+    .masonry {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+.gallery {
+    display: inline-block;
+    margin-bottom: 0;
+    width: 100%;
+}
+/* end */
+/* populardishes-carousel */
+.popular-dishes-carousel {
+    background-image: url(http://localhost:3001/assets/images/trendslist.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+    width:100%;
+}
+
+/* end */
+/* Reservation Form */
+    .book-or-order {
+        background-image: url(http://localhost:3001/assets/images/bookatable.jpg);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        overflow: hidden;
+        width:100%;
+    }
+/* end */
+/* Menu */
+.menu_cover_1 {
+    height:100vh;
+    background-image: url(http://localhost:3001/assets/images/breakfast2.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    width:100%;
+}
+.menu_cover_2 {
+    height:100vh;
+    background-image: url(http://localhost:3001/assets/images/vegan-liftz-unsplash.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    width:100%;
+}
+.menu_cover_3 {
+    height:100vh;
+    background-image: url(http://localhost:3001/assets/images/Lunch-hermes-rivera-unsplash.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    width:100%;
+}
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    height: 1000px;
+}
+.accordion-img {
+    flex-grow:1;
+}
+.accordion-des {
+    min-width: max-content;
+    flex-grow: 4;
+    position: relative;
+    left:0;
+    z-index: 1000;
+    
+
+}
+.test54 {
+    height: 320px;
+}
+/* end */
+
+/* Popular Dishes */
+.popular_dishes_cover {
+    height:100vh;
+    background-image: url(http://localhost:3001/assets/images/restaurant_cover.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;
+}
+
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width:100%;
+    z-index:5;
+    position: relative;
+    top:0;
+    left:0;
+}
+.overlay-white {
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 100%;
+    width:100%;
+    z-index:5;
+    position: relative;
+    top:0;
+    left:0;
+}
+.overlay-viewport {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width:100%;
+    z-index:5;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.overlay-content-center {
+    position: relative;;
+    top:45%;
+    transform:translate(0, -50%);
+    z-index: 10;
+}
+/* end */
+/* About */
+.chefs {
+    position: relative;
+    top:28.5%;
+    z-index: 15;
+}
+.chefs .card {
+    height: 360px;
+}
+@media screen and (max-width: 768px){
+    .chefs .card {
+        height: 270px;
+    }
+}
+.chefs .card-img-top {
+    height: 28.5vh;
+    object-fit: cover;
+}
+@media screen and (max-width: 768px){
+    .chefs .card-img-top {
+        height: 30.8vh;
+    }
+}
+.contact {
+    height:100%;
+    background-image: url(http://localhost:3001/assets/images/bookatable2.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    width:100%;
 }
 /* end */
 .row-header{
@@ -292,6 +578,8 @@ header .bm-menu {
 }
 
 .row-content {
+    position: relative;
+    margin: -50%;
     margin:0px auto;
     padding: 50px 0px 50px 0px;
     border-bottom: 1px ridge;
@@ -299,7 +587,7 @@ header .bm-menu {
 }
 
 .footer{
-    background-color: #D1C4E9;
+    background-color:#DAA520;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }

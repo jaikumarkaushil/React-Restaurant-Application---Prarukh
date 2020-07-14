@@ -44,7 +44,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
           .catch(error =>  { console.log('Post Comments', error.message); 
               alert('Your comment could not be posted\nError: '+error.message); });
   };
-// Ass4 Task 2
+
 
 export const postFeedback = (feedback) => (dispatch) => {
 
@@ -75,10 +75,35 @@ export const postFeedback = (feedback) => (dispatch) => {
               alert('Your feedback could not be posted\nError: '+error.message); });
   };
 
+export const postReservation = (reservation) => (dispatch) => {
 
-// this action creator will then be passed to the store, we have mapped the properties in the action creator
-
-// redux thunk 3, redux-thunk which will fetch the data
+    return fetch(baseUrl + 'reservation', {
+          method: 'POST',
+          body: JSON.stringify(reservation),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'same-origin'
+    })
+          .then(response => {
+            if (response.ok) {
+              return response;
+            } else {
+              var error = new Error('Error ' + response.status + ': ' + response.statusText);
+              error.response = response;
+              throw error;
+            }
+          },
+          error => {
+              var errmess = new Error(error.message);
+              throw errmess;
+          })
+          .then(response => response.json())
+          .then(response => {console.log('Reservation', response); alert('Thank you for your reserving your food with us!\n'+JSON.stringify(response)); })
+          .catch(error =>  { console.log('Post Reservation', error.message); 
+              alert('Your Reservation Form could not be posted\nError: '+error.message); });
+  };
+  
 export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));

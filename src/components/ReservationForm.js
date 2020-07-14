@@ -8,7 +8,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
-class Contact extends Component {
+class ReservationForm extends Component {
 
     constructor(props) {
         super(props);
@@ -19,24 +19,23 @@ class Contact extends Component {
 
     handleSubmit(values) {
         console.log("Current State is: " + JSON.stringify(values));
-        this.props.postFeedback(values);
-        this.props.resetFeedbackForm();
+        this.props.postReservation(values);
+        this.props.resetReservationForm();
     }
 
     render() {
         return(
-        <div className="top-spacing bottom-spacing contact" name="send-feedback" >
-            <div className="ml-4 ml-md-5 bg-white col-10 col-md-6 col-xl-4" style={{borderRadius: "16px"}}>
-                <div className="row bottom-spacing top-spacing">
+            <div className="ml-3 ml-md-5 bg-white col-10 col-md-6 col-xl-4" style={{borderRadius: "16px"}}>
+                <div className="row">
                     <div className="col-12">
-                        <h3 className="text-center">Send us Your Feedback</h3>
+                        <h1 className="text-center top-spacing bottom-spacing">Book a Table or Home Delivery</h1>
                     </div>
                     <div className="col-12">
-                        <Form model='feedback' onSubmit={(values) => this.handleSubmit(values)}>   {/*when the submit button will be clicked, it will be handled by the this.handleSubmit javascript object*/}
+                        <Form model='reservation' onSubmit={(values) => this.handleSubmit(values)}>   {/*when the submit button will be clicked, it will be handled by the this.handleSubmit javascript object*/}
                             <Row className="form-group d-flex justify-content-center my-4">
                                 <Label htmlFor="firstname"></Label>
                                 <Col md={10}>
-                                    <Control.text model=".firstname" id="firstname" name="firstname" placeholder="First Name" className="form-control" 
+                                    <Control.text model=".firstname" id="firstname" name="firstname" placeholder="Enter your First Name*" className="form-control" 
                                     validators={{
                                         required, 
                                         minLength: minLength(3), 
@@ -58,7 +57,7 @@ class Contact extends Component {
                             <Row className="form-group d-flex justify-content-center my-4">
                                 <Label htmlFor="lastname"></Label>
                                 <Col md={10}>
-                                    <Control.text model=".lastname" id="lastname" name="lastname" placeholder="Last Name" className="form-control" 
+                                    <Control.text model=".lastname" id="lastname" name="lastname" placeholder="Enter your Last Name*" className="form-control" 
                                     validators={{
                                         required, minLength: minLength(3), maxLength: maxLength(15)
                                     }}
@@ -79,7 +78,7 @@ class Contact extends Component {
                             <Row className="form-group d-flex justify-content-center my-4">
                                 <Label htmlFor="telnum"></Label>
                                 <Col md={10}>
-                                    <Control.text model=".telnum" id="telnum" name="telnum" placeholder="Tel. Number" className="form-control" 
+                                    <Control.text model=".telnum" id="telnum" name="telnum" placeholder="Enter your Phone Number*" className="form-control" 
                                     validators={{
                                         required, minLength: minLength(3), maxLength: maxLength(15), isNumber
                                     }}
@@ -101,7 +100,7 @@ class Contact extends Component {
                             <Row className="form-group d-flex justify-content-center my-4">
                                 <Label htmlFor="email"></Label>
                                 <Col md={10}>
-                                    <Control.text model=".email" id="email" name="email" placeholder="Email" className="form-control" 
+                                    <Control.text model=".email" id="email" name="email" placeholder="Enter your E-mail*" className="form-control" 
                                     validators={{
                                         required, validEmail
                                     }}
@@ -118,31 +117,15 @@ class Contact extends Component {
                                 </Col>
                             </Row>
                             <Row className="form-group d-flex justify-content-center my-4">
-                                <Col md={6}>
-                                    <div className="form-check">
-                                        <Label check>
-                                            <Control.checkbox model=".agree" name="agree" className="form-check-input" /> {' '}
-                                            <strong>May we contact you?</strong>
-                                        </Label>
-                                    </div>
-                                </Col>
-                                <Col md={3}>
-                                    <Control.select model=".contactType" name="contactType" className="form-control" > 
-                                    <option>Tel.</option>
-                                    <option>Email</option>
-                                    </Control.select>
-                                </Col>
-                            </Row>
-                            <Row className="form-group d-flex justify-content-center my-4">
                                 <Label htmlFor="message"></Label>
                                 <Col md={10}>
-                                    <Control.textarea model=".message" id="message" name="message" rows="4" className="form-control" />
+                                    <Control.textarea model=".message" id="message" name="message" rows="1" placeholder="Type your Message" className="form-control" />
                                 </Col>
                             </Row>
-                            <Row className="form-group d-flex justify-content-center my-4">
+                            <Row className="form-group d-flex justify-content-center my-3">
                                 <Col md={10} className="d-flex justify-content-center">
-                                    <Button type="submit" color="primary" className="px-5">
-                                        Send Feedback
+                                    <Button type="submit" color="info">
+                                        <i className="fa fa-cutlery" aria-hidden="true"></i>  Submit
                                     </Button>
                                 </Col>
                             </Row>
@@ -151,9 +134,8 @@ class Contact extends Component {
                     </div>
                 </div>
             </div>
-        </div>
         );
     } 
 }
 
-export default Contact; 
+export default ReservationForm; 

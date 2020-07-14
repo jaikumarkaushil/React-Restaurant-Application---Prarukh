@@ -4,6 +4,8 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom'; //w2.4 importing Browser router
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
+import "lightgallery.js/dist/css/lightgallery.css";
+import { LightgalleryProvider } from "react-lightgallery";
 
 const store = ConfigureStore();
 
@@ -16,8 +18,16 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter> 
         <div>
-          <Main /> {/* W1.6 The state is passed on to the child menu component from app component
-          W2.2 Main components has all the information about the state and corresponding view information to its children component*/} 
+          <LightgalleryProvider
+              onAfterSlide={(event, lightgallery_object) => {
+                console.log(lightgallery_object);
+                console.log(
+                    `Prev slide index: ${event.detail.prevIndex}; Current index: ${event.detail.index}`
+                );
+            }}
+          >
+          <Main />
+          </LightgalleryProvider>
         </div>
         </BrowserRouter>
       </Provider>
