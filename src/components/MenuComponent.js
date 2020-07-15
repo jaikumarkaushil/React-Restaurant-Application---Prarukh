@@ -16,6 +16,7 @@ import ReservationForm from './ReservationForm';
 
 import { LightgalleryItem, ItemTitle, LinesEllipsis } from "react-lightgallery";
 import Dishdetail from './DishdetailComponent';
+import { commentsFailed } from '../redux/ActionCreators';
 
 
 function NextArrow(props) {
@@ -147,7 +148,7 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
                     <div className="home_overlay">
                         <div className="home_overlay">
                             <div className="content-center text-center">
-                                <h1 display-3 className="text-white">Dinner</h1>   
+                                <h1 className="text-white">Dinner</h1>   
                                 <h3 className="text-white">"If a restaurant offers crayons, I always take them and color throughout the meal. It beats talking to people I came to dinner with"</h3>
                                 <Link to="menu" smooth={true} offset={-20} duration={2000} className="d-flex justify-content-center top-spacing bottom-spacing">
                                     <button className="button">
@@ -168,14 +169,14 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
         )
 }
 
-function RenderMenuItem({dish, toggleHover, hover, selectedDish, onDishSelect}) {
+function RenderMenuItem({dish, toggleHover, hover, onDishSelect}) {
         
             return(
                 
                 <div>
                     <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
-                    <span className="d-flex top-spacing justify-content-center bottom-spacing" onClick={() => onDishSelect(dish.id)} ><i className="fa fa-search-plus"></i></span>
-                    {selectedDish === dish.id ?
+                    <span className="d-flex top-spacing justify-content-center bottom-spacing" onClick={() => onDishSelect(dish)} ><i className="fa fa-search-plus"></i></span>
+                    {/* {selectedDish === dish.id ?
                         <div className="main-container">
                             <Card className="accordion-img">
                                 <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
@@ -239,7 +240,26 @@ function RenderMenuItem({dish, toggleHover, hover, selectedDish, onDishSelect}) 
                             </LightgalleryItem>
                         
 
-        }
+        } */}
+            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"}>
+                <Card className="accordion-img">
+                    <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
+                        <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
+                            {hover === dish.id ? 
+                                <Fade className="text-white transparent-black-overlay">
+                                    <CardBody >
+                                        <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle>
+                                        <CardText>{dish.description}</CardText>
+                                            <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {dish.price}</h5></span>
+                                            <a><button>Gallery</button></a>
+                                            
+                                    </CardBody>
+                                </Fade>
+                                : null
+                            }
+                        </CardImgOverlay>
+                </Card>                   
+            </LightgalleryItem>
         </div>
             
     
@@ -247,7 +267,8 @@ function RenderMenuItem({dish, toggleHover, hover, selectedDish, onDishSelect}) 
         
         
 }
-function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, subCategory, toggleHover, hover, selectedDish, onDishSelect}) {
+function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, subCategory, toggleHover, hover, selectedDish, onDishSelect, comments, commentsErrMess, postComment}) {
+    
     const cuisinedishes = dishes.filter((filtereddish) => {
         if(cuisine) {
             return(
@@ -292,7 +313,7 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, su
         }
     }).map((dish) => {
         return(
-            <Collapse isOpen={true} style={{height: "max-content"}} className="col-8 col-sm-6 col-md-4 col-lg-3 p-0 bg-white">
+            <Collapse isOpen={true} style={{height: "max-content"}} className="col-8 col-sm-6 col-md-4 col-lg-3 p-0 bg-white" key={dish.id}>
                     <Fade>
                         <FadeTransform
                             in
@@ -330,12 +351,43 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, su
         )
     }
 
-    else
+    else {
+        
+        if(selectedDish != null) 
+            
+            return(
+                // <Card>
+                //     <CardImg width="100%" height="320px" src={baseUrl + selectedDish.image} alt={selectedDish.name} />
+                //     <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={selectedDish.id}>
+                //         {hover === selectedDish.id ? 
+                //             <Fade className="text-white transparent-black-overlay">
+                //                 <CardBody >
+                //                     <CardTitle><h1 className="d-none d-md-block">{selectedDish.name}</h1><h3 className="d-block d-md-none">{selectedDish.name}</h3></CardTitle>
+                //                     <CardText><p>{selectedDish.description}</p></CardText>
+                //                     <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {selectedDish.price}</h5></span>
+                //                 </CardBody>
+                //             </Fade>
+                //             : null
+                //         }
+                //     </CardImgOverlay>
+                // </Card>
+                <Dishdetail 
+                    dish={selectedDish}
+                    isLoading={dishesLoading} // isLoading is perfectly fine here since we are using only one dish here
+                    errMess={dishesErrMess}
+                    comments={comments}
+                    commentsErrMess={commentsErrMess}
+                    postComment={postComment}
+
+                    />
+            )
+        else
         return (
                 <div className="bottom-spacing row ">
                     {cuisinedishes}  {/* this is a javascript variable that we have defined in the const menu above. */}
                 </div>    
             );
+        }
 };
 
 class Menu extends Component {
@@ -422,7 +474,7 @@ class Menu extends Component {
                             <Col className="center-alignment">
                                 {categories.map(index => {
                                     return(
-                                        <button className={this.state.category === index ? "button-active m-4" : "button m-4"} onClick={this.toggleCategory} data-event={index}>
+                                        <button className={this.state.category === index ? "button-active m-4" : "button m-4"} onClick={this.toggleCategory} data-event={index} key={index}>
                                             <Trigger onClick={this.toggleCategory}>
                                                 <span onClick={this.toggleCategory} data-event={index} className="button-content">{index}</span>  
                                                 <DiagonalSwipe onClick={this.toggleCategory} data-event={index}></DiagonalSwipe> 
@@ -436,7 +488,7 @@ class Menu extends Component {
                             <Row className="d-flex justify-content-around bottom-spacing">
                                 {cuisines.map(index => {
                                     return (
-                                        <button className={this.state.cuisine === index ? "button-active" : "button"} onClick={this.toggle} data-event={index}>
+                                        <button className={this.state.cuisine === index ? "button-active" : "button"} onClick={this.toggle} data-event={index} key={index}>
                                             <Trigger onClick={this.toggle}>
                                                 <span onClick={this.toggle} data-event={index} className="button-content">{index}</span>  
                                                 <DiagonalSwipe onClick={this.toggle} data-event={index}></DiagonalSwipe> 
@@ -547,6 +599,9 @@ class Menu extends Component {
                         hover={this.state.hover}
                         selectedDish={this.state.selectedDish}
                         onDishSelect={this.onDishSelect}
+                        comments={this.props.comments} 
+                        commentsErrMess={this.props.commentsErrMess}
+                        postComment={this.props.postComment}
                         />
                 </section>
                 <section className="book-or-order d-flex flex-row align-items-center">

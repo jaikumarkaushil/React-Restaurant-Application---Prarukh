@@ -4,7 +4,9 @@ import * as ActionTypes from './ActionTypes';
 // fetch 4, added actions to the thunk
 export const Comments = (state = {
         errMess: null,
-        comments: []
+        comments: [{
+            itemComments: []
+        }]
     }, action) => {
             switch(action.type) {
                 case ActionTypes.ADD_COMMENTS:

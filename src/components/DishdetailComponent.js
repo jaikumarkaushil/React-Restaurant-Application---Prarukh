@@ -1,7 +1,7 @@
 //Week 1 A1 This file contains the presentational components
 
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Label, Col } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Label, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent'
@@ -21,46 +21,93 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
                 transformProps={{
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
-                <Card>
-                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
+                <Card className="row flex-row">
+                    <div className="col-md-3 col-sm-6 col-12 p-4">
+                        <CardImg width="100%" height="200px" src={baseUrl + dish.image} alt={dish.name} />
+                    </div>
+                    <div className="col-md-9 col-sm-6 col-12">
+                        <CardBody className="row">
+                            <Col sm={12} md={7} lg={8}>
+                                {dish.label === "Hot" ? <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3> <span className="badge badge-danger">HOT</span></CardTitle> : <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle> }
+                                {dish.designation ? <CardSubtitle>{dish.designation}</CardSubtitle> : null }
+                                <h4><CardText className="d-none d-md-block"> {dish.description}</CardText></h4>
+                            </Col>
+                            <Col sm={12} md={5} lg={4} className="d-flex justify-content-md-center">
+                                <h4> Rs. {dish.price}</h4>
+                            </Col>
+                        </CardBody>
+                    </div>
                 </Card>
             </FadeTransform>
             );   
     }
  // redux action 5, pass the attributes to the RenderComments and CommentForm, configured the submit button to add the comment
     
-    function RenderComments({comments, postComment, dishId}) {
-    	
-    	const dishcomment = comments.map((comment) => { 
-    		return (
-                <Fade in key={comment.id}>
-                    <li key={comment.id}>
-                        <p>{comment.comment}</p>
-                        <p> -- {comment.author} , &nbsp;
-                        {new Intl.DateTimeFormat('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: '2-digit'
-                        }).format(new Date(Date.parse(comment.date)))}
-                        </p>
-                    </li>
+    function RenderComments({comments, postComment, dishID}) {
+        const commentsSelectedDish = comments.filter((comment) => comment.id === dishID.id).map((dish) => {
+            return(
+                <Fade in key={dish.id}>
+                    <div>
+                        <h3 className="top-spacing bottom-spacing" >Reviews {dish.reviews} | Average Rating {dish.averageRating} <i className="fa fa-star" aria-hidden="true"></i></h3>
+                        <h3 className="text-center bottom-spacing">Customer Reviews</h3>
+                        {dish.itemComments.map((itemComment) => (
+                            <div key={itemComment.commentId}>
+                                <Card className="row flex-row">
+                                    <div className="col-12">
+                                        <CardBody>
+                                            <h4>
+                                                <CardText>-- {itemComment.author} <span>{new Intl.DateTimeFormat('en-US', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: '2-digit'
+                                                }).format(new Date(Date.parse(itemComment.date)))}</span> 
+                                                </CardText>
+                                            </h4>
+                                            <CardText>{itemComment.comment}</CardText>
+                                            <CommentForm commentId={itemComment.commentId}  postComment={postComment} />
+                                        </CardBody>
+                                    </div>
+                                </Card>
+                                
+                            </div>
+                        ))}
+                        
+                        
+                    </div>
                 </Fade>
-                )});
-    	return (
-            <div>
-                <h4>Comments</h4>
-                <ul className="list-unstyled">
-                    <Stagger in>
-                        {dishcomment}
-                    </Stagger>
-                </ul>
-                <CommentForm dishId={dishId} postComment={postComment} />
-            </div>
             )
+        })
+        return(
+            <div>
+                <Stagger in>
+                    {commentsSelectedDish}
+                </Stagger>
+                
+            </div>
+        )
+    	// const dishcomment = comments.filter((comment) => comment.id === dish.id).map((comment) => { 
+    	// 	return (
+        //         <Fade in key={comment.id}>
+        //             <li key={comment.id}>
+        //                 <p>Reviews {comment.reviews}</p>
+        //                 <p>{comment.comment}</p>
+        //                 <p> -- {comment.author} , &nbsp;
+                        
+        //                 </p>
+        //             </li>
+        //         </Fade>
+        //         )});
+    	// return (
+        //     <div>
+        //         <h4>Comments</h4>
+        //         <ul className="list-unstyled">
+        //             <Stagger in>
+        //                 {dishcomment}
+        //             </Stagger>
+        //         </ul>
+        //         <CommentForm dishId={dishId} postComment={postComment} />
+        //     </div>
+        //     )
     }
 
 
@@ -89,7 +136,8 @@ const Dishdetail = (props) => {
     }
     else if (props.dish != null) {
         return (
-            <div className="container">
+            <div className="container bottom-spacing">
+                
                 <Breadcrumb>
                     <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
                     <BreadcrumbItem active >{props.dish.name}</BreadcrumbItem>
@@ -98,18 +146,15 @@ const Dishdetail = (props) => {
                     <h3>{props.dish.name}</h3>
                     <hr />
                 </div>
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderDish dish={props.dish} />
-                    </div>
-                    {/* <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} 
-                            postComment={props.postComment}
-                            dishId={props.dish}
-                        />
-                    </div> */}
+                <RenderDish dish={props.dish} />
+                <RenderComments 
+                        comments={props.comments} 
+                        postComment={props.postComment}
+                        dishID={props.dish}
+                    />
+                
                 </div> 
-            </div>
+        
             );
     }
     else {
@@ -139,7 +184,7 @@ class CommentForm extends Component {
 
     handleSubmitComment(values) {
         this.toggleModal();
-        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.commentId, values.rating, values.author, values.comment);
     }
 
     render() {

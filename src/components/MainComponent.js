@@ -69,18 +69,18 @@ class Main extends Component {
       );
     }
 
-    const DishWithId = ({match}) => {
-      return (
-        <Dishdetail 
-            dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
-            isLoading={this.props.dishes.isLoading} // isLoading is perfectly fine here since we are using only one dish here
-            errMess={this.props.dishes.errMess}
-            comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
-            commentsErrMess={this.props.comments.errMess}
-            postComment={this.props.postComment}
-        />
-        )
-    }
+    // const DishWithId = ({match}) => {
+    //   return (
+    //     <Dishdetail 
+    //         dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+    //         isLoading={this.props.dishes.isLoading} // isLoading is perfectly fine here since we are using only one dish here
+    //         errMess={this.props.dishes.errMess}
+    //         comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
+    //         commentsErrMess={this.props.comments.errMess}
+    //         postComment={this.props.postComment}
+    //     />
+    //     )
+    // }
 
     return (
       <div>
@@ -93,7 +93,11 @@ class Main extends Component {
                                                               dishesLoading={this.props.dishes.isLoading}
                                                               dishesErrMess={this.props.dishes.errMess}
                                                               resetReservationForm={this.props.resetReservationForm} 
-                                                              postReservation={this.props.postReservation} />} />
+                                                              postReservation={this.props.postReservation}
+                                                              comments={this.props.comments.comments} 
+                                                              commentsErrMess={this.props.comments.errMess}
+                                                              postComment={this.props.postComment}
+                                                              />} />
               {/* <Route path="/menu/:dishId" component={DishWithId} /> */}
               <Route path="/aboutus" component={() => <About leaders={this.props.leaders} />} /> 
               <Redirect to="/home"/>

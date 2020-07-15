@@ -9,9 +9,9 @@ export const addComment = (comment) => ({
 });
 
 // fetch post comment 1
-export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+export const postComment = (commentId, rating, author, comment) => (dispatch) => {
     const newComment = {
-      dishId: dishId,
+      commentId: commentId,
       rating: rating,
       author: author,
       comment: comment

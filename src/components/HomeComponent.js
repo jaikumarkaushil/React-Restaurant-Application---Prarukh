@@ -159,7 +159,7 @@ const DishesCarousel =({dishes, dishesLoading, dishesErrMess}) => {
                 <Fade key={dish.id}>
                     <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"} >
                         <a href={dish.id}>
-                            <img width="100%" height="450vmin"  top src={baseUrl + dish.image} alt={dish.name} />                               
+                            <img width="100%" height="450vmin" src={baseUrl + dish.image} alt={dish.name} />                               
                         </a>
                     </LightgalleryItem>
                 </Fade>
@@ -196,7 +196,7 @@ const DishesCarousel =({dishes, dishesLoading, dishesErrMess}) => {
 function TrendItem ({item}){
     return(
         <Fade cascade delay={1000}>
-            <Card className="row flex-row">
+            <Card>
                 <div className="col-md-3 col-sm-6 col-12 p-4">
                     <CardImg height="200px" src={baseUrl + item.image} alt={item.name} />
                 </div>
@@ -205,7 +205,7 @@ function TrendItem ({item}){
                         <Col sm={12} md={7} lg={8}>
                             {item.label === "Hot" ? <CardTitle><h1 className="d-none d-md-block">{item.name}</h1><h3 className="d-block d-md-none">{item.name}</h3> <span className="badge badge-danger">HOT</span></CardTitle> : <CardTitle><h1 className="d-none d-md-block">{item.name}</h1><h3 className="d-block d-md-none">{item.name}</h3></CardTitle> }
                             {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }
-                            <CardText className="d-none d-md-block"><h4> {item.description}</h4></CardText>
+                            <h4><CardText className="d-none d-md-block"> {item.description}</CardText></h4>
                         </Col>
                         <Col sm={12} md={5} lg={4} className="d-flex justify-content-md-center">
                             <h4> Rs. {item.price}</h4>
