@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Row, Label, Col} from 'reactstrap'; // form feedbackback will validate our form.
+import { Row, Label, Col} from 'reactstrap'; // form feedbackback will validate our form.
 import { Control, Form, Errors } from 'react-redux-form';
 
 const required = (val) => val && val.length;
@@ -156,4 +156,4 @@ class Contact extends Component {
     } 
 }
 
-export default Contact; 
+export default React.memo(Contact); 

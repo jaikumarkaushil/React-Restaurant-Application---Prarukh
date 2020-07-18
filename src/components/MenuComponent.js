@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay, Breadcrumb, BreadcrumbItem, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Collapse, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay } from 'reactstrap';
 import { Fade } from 'react-reveal';
 import { FadeTransform } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
@@ -57,9 +57,7 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
         ),
         customPaging: function(i) {
             return (
-                <a>
                     <img width="10px" height="10px" style={{borderRadius: "50%"}} src={`${baseUrl}/assets/images/breakfast2.jpg`} />
-                </a>
             );
             },
         responsive: [
@@ -171,10 +169,9 @@ function RenderMenuItem({dish, toggleHover, hover, onDishSelect}) {
             <div key={dish.id}>
                 <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
                 <Fade>
-                    <Card style={{cursor:"pointer"}}>
+                    <Card className="text-white">
                         <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
-                        <Fade className="text-white" triggerOnce>
-                            <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
+                            <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover} data-event={dish.id}>
                                 {hover === dish.id ? 
                                     <CardBody className="text-center transparent-black-overlay bottom-position-parent">
                                         <CardTitle><h3 className="d-none d-md-block">{dish.name}</h3><h4 className="d-block d-md-none">{dish.name}</h4></CardTitle>                                    
@@ -186,7 +183,6 @@ function RenderMenuItem({dish, toggleHover, hover, onDishSelect}) {
                                     : null
                                 }
                             </CardImgOverlay>
-                        </Fade>
                     </Card>
                 </Fade>
             </div>
@@ -528,4 +524,4 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+export default React.memo(Menu);

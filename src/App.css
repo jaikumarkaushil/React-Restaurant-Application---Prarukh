@@ -58,7 +58,12 @@ h4 {
         font-size: 0.9em;
     }
 } */
-
+.card-title {
+    font-size: 1.17em;
+}
+.card-text {
+    font-size: 1.17em;
+}
 .button {
     display: inline-block;
     padding: .75rem 1.25rem;
@@ -575,16 +580,18 @@ header .bm-menu {
 /* end */
 /* About */
 .chefs {
-    position: relative;
-    top:28.5%;
+    position: absolute;
+    top:35.7vh;
     z-index: 15;
+    left:50%;
+    transform:translate(-50%, 0);
 }
 .chefs .card {
-    height: 360px;
+    height: 420px;
 }
 @media screen and (max-width: 768px){
     .chefs .card {
-        height: 270px;
+        height: 360px;
     }
 }
 .chefs .card-img-top {

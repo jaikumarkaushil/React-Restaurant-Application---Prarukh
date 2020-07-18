@@ -28,8 +28,8 @@ function RenderLeader({leader, isLoading, errMess}) {
     }
     else
         return (
-            <Card key={leader.id} className="mx-xl-4 mx-lg-3 mx-md-1" >
-                <CardImg width="100%" height="300vmin" height-md="auto" top src={baseUrl + leader.image} alt={leader.name} />
+            <Card key={leader.id} className="mx-xl-4 mx-lg-3 mx-1" >
+                <CardImg width="100%" height="300vh" top src={baseUrl + leader.image} alt={leader.name} />
                 <CardBody >
                     <CardTitle><h3>{leader.name}</h3></CardTitle>
                     <CardText className="d-none d-md-block">{leader.description}</CardText>
@@ -120,10 +120,7 @@ function About(props) {
                     </div>
                 </div>
                 <div className="center-alignment chefs">
-                    <div className="col-12">
-                        <h2 className="text-center text-white bottom-spacing">Our Chefs</h2>
-                        <LeaderList leaders={props.leaders} />
-                    </div>
+                    <LeaderList leaders={props.leaders} />
                 </div>
             </div>
             <div className="row top-spacing mt-md-5">
@@ -141,14 +138,6 @@ function About(props) {
                         <h5 className="text-center px-2 px-md-5">Our chiefs and staff members consists of highly motivated and skilled specialists who know how to deal with any issue that you may come across. This creates a basis for lasting relationships with our clients built on trust and mutual understanding. We are devoted to prepare world class unique variety of cuisines from all over the world along with the high-quality supporting services that will never let you go unsatisfied.</h5>
                         <h5 className="text-center px-2 px-md-5 d-none d-md-block">Ea mollit labore fugiat ut sunt cupidatat laborum duis. Sunt occaecat enim mollit reprehenderit nostrud excepteur ea sunt incididunt exercitation non aliquip ut qui. Ex est sunt officia fugiat Lorem labore pariatur nisi ut quis sit exercitation nisi culpa.</h5>
                     </div>
-                </div>
-                <div className="col-12 d-flex justify-content-center">
-                    <button className="button">
-                        <Trigger>
-                            <span className="button-content">Our Team</span>  
-                            <DiagonalSwipe /> 
-                        </Trigger>
-                    </button>
                 </div>
                 <div className="col-12">
                     <h1 className="bottom-spacing italic golden text-center">--- Our Results ---</h1>
@@ -197,4 +186,4 @@ function About(props) {
     );
 }
 
-export default About;    
+export default React.memo(About);    

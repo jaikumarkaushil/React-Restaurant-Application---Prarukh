@@ -157,4 +157,4 @@ class CuisineTabs extends Component {
     }
 }
 
-export default CuisineTabs;
+export default React.memo(CuisineTabs);

@@ -1,7 +1,7 @@
 //Week 1 A1 This file contains the presentational components
 
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Label, Col} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, Row, Label, Col} from 'reactstrap';
 import { HashLink as Link} from 'react-router-hash-link';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent'
@@ -48,18 +48,13 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
                 <Fade in key={dish.id}>
                     <Card className="row flex-row">
                         <CardBody>
-                            <h3>
-                                <CardTitle>-- {dish.author} | Rating: {dish.rating} <i className="fa fa-star" aria-hidden="true"></i> | <span>{new Intl.DateTimeFormat('en-US', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: '2-digit'
-                                            }).format(new Date(Date.parse(dish.date)))}</span> 
-                                </CardTitle>
-                            </h3>
-                            <h5>
-                                <CardText>{dish.comment}</CardText>
-                            </h5>
-                            
+                            <CardTitle>-- {dish.author} | Rating: {dish.rating} <i className="fa fa-star" aria-hidden="true"></i> | <span>{new Intl.DateTimeFormat('en-US', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: '2-digit'
+                                        }).format(new Date(Date.parse(dish.date)))}</span> 
+                            </CardTitle>
+                            <CardText>{dish.comment}</CardText>
                         </CardBody>
                     </Card>
                 </Fade>

@@ -11,7 +11,6 @@ import ReservationForm from './ReservationForm';
 import { HashLink} from 'react-router-hash-link';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import { FadeTransform } from 'react-animation-components';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
 import CuisineTabs from './CuisineTabs';
@@ -350,4 +349,4 @@ function Home(props) {
 		)
 }
 
-export default Home;
+export default React.memo(Home);
