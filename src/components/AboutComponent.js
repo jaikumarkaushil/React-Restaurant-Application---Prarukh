@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Slide } from 'react-awesome-reveal';
 import { HashLink} from 'react-router-hash-link';
-import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { Link } from 'react-scroll';
 
 
 function RenderLeader({leader, isLoading, errMess}) {

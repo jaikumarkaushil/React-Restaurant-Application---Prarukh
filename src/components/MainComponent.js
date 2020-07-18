@@ -54,6 +54,7 @@ class Main extends Component {
               dishes={this.props.dishes.dishes}
               dishesLoading={this.props.dishes.isLoading}
               dishesErrMess={this.props.dishes.errMess}
+              promotions={this.props.promotions.promotions}
               resetReservationForm={this.props.resetReservationForm} 
               postReservation={this.props.postReservation}
           />

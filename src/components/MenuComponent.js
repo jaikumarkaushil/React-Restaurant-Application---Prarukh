@@ -5,7 +5,7 @@ import { FadeTransform } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { Link } from 'react-scroll';
 import { Loading } from './LoadingComponent';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -57,7 +57,7 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
         ),
         customPaging: function(i) {
             return (
-                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src={`${baseUrl}/assets/images/breakfast2.jpg`} />
+                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src={`${baseUrl}/assets/images/breakfast2.jpg`} alt="breakfast.jpg"/>
             );
             },
         responsive: [

@@ -9,7 +9,7 @@ import { Slide } from 'react-awesome-reveal';
 import { baseUrl } from '../shared/baseUrl';
 import ReservationForm from './ReservationForm';
 import { HashLink} from 'react-router-hash-link';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { Link } from 'react-scroll';
 import { FadeTransform } from 'react-animation-components';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
