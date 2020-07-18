@@ -8,7 +8,7 @@ export const DiagonalSwipe = styled.div`
     left:-100%;
     width: 100%;
     height: 100%;
-    transform: skewY(-11deg);
-    transition: transform 900ms ease-in-out;
+    transform: skewX(-45deg);
+    transition: transform 600ms ease-in-out;
 `
 export default DiagonalSwipe;

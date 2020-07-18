@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
 import About from './AboutComponent';
-import Dishdetail from './DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'; // w3.3.4redux
@@ -46,8 +45,6 @@ class Main extends Component {
     this.props.fetchPromos();
     this.props.fetchLeaders();
   }
-
-  
   // redux thunk 7, add the dishesLoading, dishesErrMess for homepage, having multiple dishes and isLoading and errMess for single dish in the dishdetail component 
   render() {
     const HomePage = () => {

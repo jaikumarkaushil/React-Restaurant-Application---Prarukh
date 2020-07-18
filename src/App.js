@@ -19,12 +19,12 @@ class App extends Component {
         <BrowserRouter> 
         <div>
           <LightgalleryProvider
-              onAfterSlide={(event, lightgallery_object) => {
-                console.log(lightgallery_object);
-                console.log(
-                    `Prev slide index: ${event.detail.prevIndex}; Current index: ${event.detail.index}`
-                );
-            }}
+            //   onAfterSlide={(event, lightgallery_object) => {
+            //     console.log(lightgallery_object);
+            //     console.log(
+            //         `Prev slide index: ${event.detail.prevIndex}; Current index: ${event.detail.index}`
+            //     );
+            // }}
           >
           <Main />
           </LightgalleryProvider>

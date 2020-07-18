@@ -141,9 +141,9 @@ class Contact extends Component {
                             </Row>
                             <Row className="form-group d-flex justify-content-center my-4">
                                 <Col md={10} className="d-flex justify-content-center">
-                                    <Button type="submit" color="primary" className="px-5">
+                                    <button type="submit" className="button2">
                                         Send Feedback
-                                    </Button>
+                                    </button>
                                 </Col>
                             </Row>
 

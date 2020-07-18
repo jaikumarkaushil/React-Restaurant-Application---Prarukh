@@ -5,13 +5,13 @@ import { baseUrl } from '../shared/baseUrl';
 
 export const addComment = (comment) => ({
     type: ActionTypes.ADD_COMMENT,
-    payload: comment
+    payload: comment,
 });
 
 // fetch post comment 1
-export const postComment = (commentId, rating, author, comment) => (dispatch) => {
+export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     const newComment = {
-      commentId: commentId,
+      dishId: dishId,
       rating: rating,
       author: author,
       comment: comment
@@ -29,6 +29,7 @@ export const postComment = (commentId, rating, author, comment) => (dispatch) =>
           .then(response => {
             if (response.ok) {
               return response;
+              
             } else {
               var error = new Error('Error ' + response.status + ': ' + response.statusText);
               error.response = response;
@@ -40,7 +41,9 @@ export const postComment = (commentId, rating, author, comment) => (dispatch) =>
               throw errmess;
           })
           .then(response => response.json())
+          
           .then(response => dispatch(addComment(response)))
+
           .catch(error =>  { console.log('Post Comments', error.message); 
               alert('Your comment could not be posted\nError: '+error.message); });
   };

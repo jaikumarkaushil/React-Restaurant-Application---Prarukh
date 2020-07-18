@@ -4,7 +4,8 @@ import { Loading } from './LoadingComponent';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Slide, Fade } from 'react-awesome-reveal';
+import { Fade } from 'react-reveal';
+import { Slide } from 'react-awesome-reveal';
 import { baseUrl } from '../shared/baseUrl';
 import ReservationForm from './ReservationForm';
 import { HashLink} from 'react-router-hash-link';
@@ -156,13 +157,9 @@ const DishesCarousel =({dishes, dishesLoading, dishesErrMess}) => {
     const populardishes = dishes.map((dish) => {
         return(
             <Collapse key={dish.id} isOpen={true} className="p-0 bg-white">
-                <Fade key={dish.id}>
-                    <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"} >
-                        <a href={dish.id}>
-                            <img width="100%" height="450vmin" src={baseUrl + dish.image} alt={dish.name} />                               
-                        </a>
-                    </LightgalleryItem>
-                </Fade>
+                <LightgalleryItem group="any" src={baseUrl + dish.image} subHtml={".photocaption"} closable={true}>
+                    <img width="100%" height="450vmin" src={baseUrl + dish.image} alt={dish.name} />                               
+                </LightgalleryItem>
             </Collapse>
         )
     })
@@ -195,8 +192,8 @@ const DishesCarousel =({dishes, dishesLoading, dishesErrMess}) => {
 
 function TrendItem ({item}){
     return(
-        <Fade cascade delay={1000}>
-            <Card>
+        <Fade>
+            <Card className=" row flex-row">
                 <div className="col-md-3 col-sm-6 col-12 p-4">
                     <CardImg height="200px" src={baseUrl + item.image} alt={item.name} />
                 </div>
@@ -233,7 +230,7 @@ function Home(props) {
                     <h1 className="bottom-spacing d-none d-md-block text-center" >A Multicuisine Restaurant</h1>
                     <h2 className="bottom-spacing d-block d-md-none text-center" >A Multicuisine Restaurant</h2>
                     <MenuCarousel />
-                    <div className="col-8 mt-md-2 p-3 d-flex justify-content-center top-spacing">
+                    <div className="col-8 p-3 d-flex justify-content-center top-spacing">
                         <HashLink smooth to="/menu/#menu" scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
                             <button className="button col-12">
                                 <Trigger >
@@ -243,7 +240,7 @@ function Home(props) {
                             </button>
                         </HashLink>
                     </div>
-                    <h4 className="text-center mt-3"><em>"We think we’re in love, made to perfection and a perfect fuel to start with."</em></h4>
+                    <h4 className="text-center"><em>"We think we’re in love, made to perfection and a perfect fuel to start with."</em></h4>
                     <Link to="introView" smooth={true} offset={-12} duration={600} className="text-center mt-4">
                         <i className="fa fa-arrow-down fa-lg" aria-hidden="true"></i>
                     </Link>
@@ -310,7 +307,7 @@ function Home(props) {
             <section className="trendslist botton-spacing">
                 <h1 className="text-center italic golden top-spacing bottom-spacing view-heading overlay-white" >-- Trends --</h1>
                 <div className="row m-0 align-items-center justify-content-center">
-                    <div className="col-12">
+                    <div className="col-12 container-fluid">
                         {trends}
                     </div>
                     <div className="col-8 p-3 d-flex justify-content-center">

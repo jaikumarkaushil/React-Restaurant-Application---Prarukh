@@ -14,7 +14,18 @@ html { font-size: calc( 10px + (14 - 10) * (100vw - 768) / (1000 - 768) ); }
 
 html { font-size: calc( 10px + (12 - 10) * (100vw - 1000) / (1500 - 1000) ); }
 }
-   
+.bottom-position-parent {
+    position: relative;
+    width:100%;
+}
+.bottom-position-center {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    width:100%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
 /* h1 {
     font-size: 2.4em;
 }
@@ -52,7 +63,7 @@ h4 {
     display: inline-block;
     padding: .75rem 1.25rem;
     border-radius: 1rem;
-    border: none;
+    border: solid 1px #DAA520;
     background: rgb(255,255,255);
     text-transform: uppercase;
     font-size: 1.2rem;
@@ -60,7 +71,9 @@ h4 {
     position: relative;
     font-weight: 300;
     overflow: hidden;
+    cursor: pointer;
 }
+
 .button-active {
     display: inline-block;
     padding: .75rem 1.25rem;
@@ -72,6 +85,8 @@ h4 {
     position: relative;
     overflow: hidden;
     background-color: #DAA520;
+    cursor: pointer;
+    
 }
 .button-content {
     position: relative;
@@ -79,6 +94,37 @@ h4 {
 }
 .button-content:hover {
     color: white;
+}
+.button2 {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 1rem;
+    border-color: #DAA520;
+    background: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: .15rem;
+    position: relative;
+    font-weight: 300;
+    overflow: hidden;
+    cursor: pointer;
+    color:#DAA520;
+}
+.button2:hover {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 1rem;
+    background: rgb(255,255,255);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: .15rem;
+    position: relative;
+    font-weight: 300;
+    overflow: hidden;
+    cursor: pointer;
+    color: floralwhite;
+    background-color: #DAA520;
+
 }
 .content-center {
     height:100%;
@@ -245,7 +291,7 @@ header .bm-menu {
 .home_overlay {
     background-color: rgb(0,0,0);
     background-color: rgba(0, 0, 0, 0.3);
-    height: 100vh;
+    height: 100%;
     width:100%;
     z-index:5;
     position: absolute;
@@ -469,26 +515,15 @@ header .bm-menu {
     overflow: hidden;
     width:100%;
 }
-.main-container {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    height: 1000px;
-}
-.accordion-img {
-    flex-grow:1;
-}
-.accordion-des {
-    min-width: max-content;
-    flex-grow: 4;
-    position: relative;
-    left:0;
-    z-index: 1000;
-    
 
-}
 .test54 {
     height: 320px;
+}
+.clicking-button {
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 /* end */
 

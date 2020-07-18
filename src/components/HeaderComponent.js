@@ -53,11 +53,11 @@ class Header extends Component {
           <Nav navbar className="d-flex flex-row justify-content-end">
             <NavItem className="mx-lg-4 d-none d-lg-block">
               <HashLink smooth to="/home/#reservation" scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-                <Button outline className="button" color="primary"><span className="fa fa-ticket fa-lg"></span> Reservation</Button>
+                <button className="button2"><span className="fa fa-ticket fa-lg"></span> Reservation</button>
               </HashLink>
             </NavItem>
             <NavItem className="mr-lg-4 d-none d-lg-block">
-              <Button outline className="button" color="success" onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+              <button className="button2" color="success" onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</button>
             </NavItem>
           </Nav>
       </Navbar>
@@ -104,11 +104,11 @@ class Header extends Component {
             </NavItem>
             <NavItem className="my-5 d-lg-none">
               <HashLink smooth to="/home/#reservation" scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-                <Button outline className="button" color="primary"><span className="fa fa-ticket fa-lg"></span> Reservation</Button>
+              <button className="button2"><span className="fa fa-ticket fa-lg"></span> Reservation</button>
               </HashLink>
             </NavItem>
             <NavItem className="my-5 d-lg-none">
-              <Button outline className="button" color="success" onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+              <button className="button2" color="success" onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</button>
             </NavItem>
           </Nav>
         </Menu>

@@ -1,8 +1,8 @@
 //Week 1 A1 This file contains the presentational components
 
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Label, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Label, Col} from 'reactstrap';
+import { HashLink as Link} from 'react-router-hash-link';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent'
 import { baseUrl } from '../shared/baseUrl';
@@ -29,8 +29,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
                         <CardBody className="row">
                             <Col sm={12} md={7} lg={8}>
                                 {dish.label === "Hot" ? <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3> <span className="badge badge-danger">HOT</span></CardTitle> : <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle> }
-                                {dish.designation ? <CardSubtitle>{dish.designation}</CardSubtitle> : null }
-                                <h4><CardText className="d-none d-md-block"> {dish.description}</CardText></h4>
+                                <h4><CardText> {dish.description}</CardText></h4>
                             </Col>
                             <Col sm={12} md={5} lg={4} className="d-flex justify-content-md-center">
                                 <h4> Rs. {dish.price}</h4>
@@ -44,70 +43,39 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
  // redux action 5, pass the attributes to the RenderComments and CommentForm, configured the submit button to add the comment
     
     function RenderComments({comments, postComment, dishID}) {
-        const commentsSelectedDish = comments.filter((comment) => comment.id === dishID.id).map((dish) => {
+        const commentsSelectedDish = comments.filter((filteredDish) => filteredDish.dishId === dishID.id).map((dish) => {
             return(
                 <Fade in key={dish.id}>
-                    <div>
-                        <h3 className="top-spacing bottom-spacing" >Reviews {dish.reviews} | Average Rating {dish.averageRating} <i className="fa fa-star" aria-hidden="true"></i></h3>
-                        <h3 className="text-center bottom-spacing">Customer Reviews</h3>
-                        {dish.itemComments.map((itemComment) => (
-                            <div key={itemComment.commentId}>
-                                <Card className="row flex-row">
-                                    <div className="col-12">
-                                        <CardBody>
-                                            <h4>
-                                                <CardText>-- {itemComment.author} <span>{new Intl.DateTimeFormat('en-US', {
-                                                    year: 'numeric',
-                                                    month: 'long',
-                                                    day: '2-digit'
-                                                }).format(new Date(Date.parse(itemComment.date)))}</span> 
-                                                </CardText>
-                                            </h4>
-                                            <CardText>{itemComment.comment}</CardText>
-                                            <CommentForm commentId={itemComment.commentId}  postComment={postComment} />
-                                        </CardBody>
-                                    </div>
-                                </Card>
-                                
-                            </div>
-                        ))}
-                        
-                        
-                    </div>
+                    <Card className="row flex-row">
+                        <CardBody>
+                            <h3>
+                                <CardTitle>-- {dish.author} | Rating: {dish.rating} <i className="fa fa-star" aria-hidden="true"></i> | <span>{new Intl.DateTimeFormat('en-US', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: '2-digit'
+                                            }).format(new Date(Date.parse(dish.date)))}</span> 
+                                </CardTitle>
+                            </h3>
+                            <h5>
+                                <CardText>{dish.comment}</CardText>
+                            </h5>
+                            
+                        </CardBody>
+                    </Card>
                 </Fade>
             )
         })
         return(
-            <div>
+            <div className="top-spacing">
+                <h2 className="top-spacing bottom-spacing pl-3" >Reviews {dishID.reviews} | Average Rating {dishID.averageRating} <i className="fa fa-star" aria-hidden="true"></i></h2>
+                <h2 className="text-center bottom-spacing pl-3">Customer Reviews</h2>
+                {console.log(dishID.id + "know")}
                 <Stagger in>
                     {commentsSelectedDish}
+                    <CommentForm dishId={dishID.id} postComment={postComment} />
                 </Stagger>
-                
             </div>
         )
-    	// const dishcomment = comments.filter((comment) => comment.id === dish.id).map((comment) => { 
-    	// 	return (
-        //         <Fade in key={comment.id}>
-        //             <li key={comment.id}>
-        //                 <p>Reviews {comment.reviews}</p>
-        //                 <p>{comment.comment}</p>
-        //                 <p> -- {comment.author} , &nbsp;
-                        
-        //                 </p>
-        //             </li>
-        //         </Fade>
-        //         )});
-    	// return (
-        //     <div>
-        //         <h4>Comments</h4>
-        //         <ul className="list-unstyled">
-        //             <Stagger in>
-        //                 {dishcomment}
-        //             </Stagger>
-        //         </ul>
-        //         <CommentForm dishId={dishId} postComment={postComment} />
-        //     </div>
-        //     )
     }
 
 
@@ -119,7 +87,7 @@ const Dishdetail = (props) => {
     if (props.isLoading) {
         return(
             <div className="container">
-                <div className="row">
+                <div className="row text-center">
                     <Loading />
                 </div>
             </div>
@@ -136,12 +104,13 @@ const Dishdetail = (props) => {
     }
     else if (props.dish != null) {
         return (
-            <div className="container bottom-spacing">
-                
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
-                    <BreadcrumbItem active >{props.dish.name}</BreadcrumbItem>
-                </Breadcrumb>
+            <div name="dishdetail" className="col-12 col-lg-10 offset-lg-1 containter-fluid bottom-spacing">
+                <h2>
+                    <Breadcrumb>
+                            <BreadcrumbItem><Link to='/menu/#menu'>Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                </h2>
                 <div className="col-12">
                     <h3>{props.dish.name}</h3>
                     <hr />
@@ -152,7 +121,6 @@ const Dishdetail = (props) => {
                         postComment={props.postComment}
                         dishID={props.dish}
                     />
-                
                 </div> 
         
             );
@@ -177,6 +145,7 @@ class CommentForm extends Component {
     }
 
     toggleModal() {
+        
         this.setState({
             isModalOpen: !this.state.isModalOpen
         });
@@ -184,29 +153,41 @@ class CommentForm extends Component {
 
     handleSubmitComment(values) {
         this.toggleModal();
-        this.props.postComment(this.props.commentId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
         
         return(
-            <div>
-                <Button outline onClick={this.toggleModal} ><span className="fa fa-pencil fa-lg"></span> Submit Comment</Button>
+            <div className="d-flex flex-row justify-content-center top-spacing">
+                <button className="button2" outline onClick={this.toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comment</button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                    <LocalForm onSubmit={(values) => this.handleSubmitComment(values)}>   {/*when the submit button will be clicked, it will be handled by the this.handleSubmit javascript object*/}
+                    <LocalForm onSubmit={(values) => this.handleSubmitComment(values)} >   {/*when the submit button will be clicked, it will be handled by the this.handleSubmit javascript object*/}
                             <Row className="form-group">
                                 <Label htmlFor="rating" md={12}>Rating</Label>
                                 <Col md={12}>
-                                    <Control.select model=".rating" id="rating" name="rating" className="form-control"> 
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-
+                                    <Control.select model=".rating" id="rating" name="rating" className="form-control"
+                                    validators={{
+                                        required, 
+                                    }}
+                                    > 
+                                        <option>Rating</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
                                     </Control.select>
+                                    <Errors 
+                                        className="text-danger"
+                                        model=".rating"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required'
+                                        }} 
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -237,14 +218,13 @@ class CommentForm extends Component {
                                     <Control.textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" />
                                 </Col>
                             </Row>
-                            <Row className="form-group">
-                                <Col>
-                                    <Button type="submit" color="primary">
+                            <Row className="form-group d-flex justify-content-center">
+                                <Col className="text-center py-3">
+                                    <button type="submit" className="button2">
                                         Submit
-                                    </Button>
+                                    </button>
                                 </Col>
                             </Row>
-
                         </LocalForm>
                     </ModalBody>
                 </Modal>
@@ -253,4 +233,4 @@ class CommentForm extends Component {
     }
 };
 
-export default Dishdetail;  //Task1 Week1 A2 Exporting the Dishdetail
+export default Dishdetail;

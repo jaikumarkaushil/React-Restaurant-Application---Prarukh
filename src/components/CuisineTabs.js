@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Row, Col, Card, CardImg, CardBody, CardTitle, CardImgOverlay } from 'reactstrap';
+import { Collapse, Row, Col, Card, CardImg, CardBody, CardTitle, CardImgOverlay, CardText } from 'reactstrap';
 import { Fade } from 'react-awesome-reveal';
 import { FadeTransform } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
@@ -13,22 +13,21 @@ function RenderMenuItem({dish, toggleHover, hover}) {
     return(
         <div>
             <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
-            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"} >
-                <a href={dish.id}>
-                    <Card key={dish.id}>
+            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtml={".photocaption"} closable={true}>
+                    <Card key={dish.id} style={{cursor: "pointer"}}>
                         <CardImg width="100%" top src={baseUrl + dish.image} alt={dish.name} />
                         <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover} data-event={dish.id}>
                             {hover === dish.id ? 
                                 <Fade className="text-white transparent-black-overlay d-flex flex-row align-items-center text-center">
                                     <CardBody>
-                                        <CardTitle><h1>{dish.name}</h1></CardTitle>
+                                    <h1><CardTitle>{dish.name}</CardTitle></h1>
+                                    <CardText><i className="fa fa-search-plus"></i> Click to expand</CardText>
                                     </CardBody>
                                 </Fade>
                                 : null
                             }
                         </CardImgOverlay>
                     </Card>
-                </a>
             </LightgalleryItem>
         </div>
         )

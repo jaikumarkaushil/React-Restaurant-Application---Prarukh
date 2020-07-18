@@ -18,7 +18,7 @@ class ReservationForm extends Component {
     }
 
     handleSubmit(values) {
-        console.log("Current State is: " + JSON.stringify(values));
+        // console.log("Current State is: " + JSON.stringify(values));
         this.props.postReservation(values);
         this.props.resetReservationForm();
     }
@@ -58,7 +58,7 @@ class ReservationForm extends Component {
                                 <Label htmlFor="lastname"></Label>
                                 <Col md={10}>
                                     <Control.text model=".lastname" id="lastname" name="lastname" placeholder="Enter your Last Name*" className="form-control" 
-                                    validators={{
+                                    validators = {{
                                         required, minLength: minLength(3), maxLength: maxLength(15)
                                     }}
                                     />
@@ -72,7 +72,6 @@ class ReservationForm extends Component {
                                             maxLength: 'Must be 15 characters or less'
                                         }} 
                                     />
-                                    
                                 </Col>
                             </Row>
                             <Row className="form-group d-flex justify-content-center my-4">
@@ -83,7 +82,7 @@ class ReservationForm extends Component {
                                         required, minLength: minLength(3), maxLength: maxLength(15), isNumber
                                     }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
                                         model=".telnum"
                                         show="touched"
@@ -92,9 +91,8 @@ class ReservationForm extends Component {
                                             minLength: 'Must be greater than 2 number',
                                             maxLength: 'Must be 15 numbers or less',
                                             isNumber: 'Must be a number'
-                                        }} 
+                                        }}
                                     />
-                                    
                                 </Col>
                             </Row>
                             <Row className="form-group d-flex justify-content-center my-4">
@@ -105,7 +103,7 @@ class ReservationForm extends Component {
                                         required, validEmail
                                     }}
                                     />
-                                    <Errors 
+                                    <Errors
                                         className="text-danger"
                                         model=".email"
                                         show="touched"
@@ -124,9 +122,9 @@ class ReservationForm extends Component {
                             </Row>
                             <Row className="form-group d-flex justify-content-center my-3">
                                 <Col md={10} className="d-flex justify-content-center">
-                                    <Button type="submit" color="info">
+                                    <button type="submit" className="button2">
                                         <i className="fa fa-cutlery" aria-hidden="true"></i>  Submit
-                                    </Button>
+                                    </button>
                                 </Col>
                             </Row>
 

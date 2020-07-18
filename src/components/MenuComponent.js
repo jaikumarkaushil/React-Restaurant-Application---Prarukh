@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import { Collapse, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay, CardSubtitle, Breadcrumb, BreadcrumbItem, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { Fade } from 'react-awesome-reveal';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Collapse, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay, Breadcrumb, BreadcrumbItem, Form, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Fade } from 'react-reveal';
 import { FadeTransform } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
-import { Link as Linking} from 'react-router-dom';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import { Loading } from './LoadingComponent';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ReservationForm from './ReservationForm';
-
-import { LightgalleryItem, ItemTitle, LinesEllipsis } from "react-lightgallery";
 import Dishdetail from './DishdetailComponent';
-import { commentsFailed } from '../redux/ActionCreators';
 
 
 function NextArrow(props) {
@@ -171,96 +166,30 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
 
 function RenderMenuItem({dish, toggleHover, hover, onDishSelect}) {
         
-            return(
+        return(
                 
-                <div>
-                    <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
-                    <span className="d-flex top-spacing justify-content-center bottom-spacing" onClick={() => onDishSelect(dish)} ><i className="fa fa-search-plus"></i></span>
-                    {/* {selectedDish === dish.id ?
-                        <div className="main-container">
-                            <Card className="accordion-img">
-                                <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
-                                    <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
-                                        {hover === dish.id ? 
-                                            <Fade className="text-white transparent-black-overlay">
-                                                <CardBody >
-                                                    <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle>
-                                                    <CardText><p>{dish.description}</p></CardText>
-                                                        <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {dish.price}</h5></span>
-                                                        <a><button>Gallery</button></a>
-                                                        
-                                                </CardBody>
-                                            </Fade>
-                                            : null
-                                        }
-                                    </CardImgOverlay>
-                                </Card>
-                                <div className="accordion-des container">
-                                    <Card className="row flex-row">
-                                        <div className="col-md-3 col-sm-6 col-12 p-4">
-                                            <CardImg width="100%" height="200px" src={baseUrl + dish.image} alt={dish.name} />
-                                        </div>
-                                        <div className="col-md-9 col-sm-6 col-12">
-                                            <CardBody className="row">
-                                                <Col sm={12} md={7} lg={8}>
-                                                    {dish.label === "Hot" ? <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3> <span className="badge badge-danger">HOT</span></CardTitle> : <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle> }
-                                                    {dish.designation ? <CardSubtitle>{dish.designation}</CardSubtitle> : null }
-                                                    <CardText className="d-none d-md-block"><h4> {dish.description}</h4></CardText>
-                                                </Col>
-                                                <Col sm={12} md={5} lg={4} className="d-flex justify-content-md-center">
-                                                    <h4> Rs. {dish.price}</h4>
-                                                </Col>
-                                            </CardBody>
-                                        </div>
-                                    </Card>
-                                </div>
-                                
-                        </div>
-                        
-                    :
-                        
-                            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"}>
-                                <Card className="accordion-img">
-                                    <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
-                                        <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
-                                            {hover === dish.id ? 
-                                                <Fade className="text-white transparent-black-overlay">
-                                                    <CardBody >
-                                                        <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle>
-                                                        <CardText><p>{dish.description}</p></CardText>
-                                                            <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {dish.price}</h5></span>
-                                                            <a><button>Gallery</button></a>
-                                                            
-                                                    </CardBody>
-                                                </Fade>
-                                                : null
-                                            }
-                                        </CardImgOverlay>
-                                </Card>                   
-                            </LightgalleryItem>
-                        
-
-        } */}
-            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtmlSelectorRelative={true} subHtml={".photocaption"}>
-                <Card className="accordion-img">
-                    <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
-                        <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
-                            {hover === dish.id ? 
-                                <Fade className="text-white transparent-black-overlay">
-                                    <CardBody >
-                                        <CardTitle><h1 className="d-none d-md-block">{dish.name}</h1><h3 className="d-block d-md-none">{dish.name}</h3></CardTitle>
-                                        <CardText>{dish.description}</CardText>
-                                            <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {dish.price}</h5></span>
-                                            <a><button>Gallery</button></a>
-                                            
+            <div key={dish.id}>
+                <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
+                <Fade>
+                    <Card style={{cursor:"pointer"}}>
+                        <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
+                        <Fade className="text-white" triggerOnce>
+                            <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={dish.id}>
+                                {hover === dish.id ? 
+                                    <CardBody className="text-center transparent-black-overlay bottom-position-parent">
+                                        <CardTitle><h3 className="d-none d-md-block">{dish.name}</h3><h4 className="d-block d-md-none">{dish.name}</h4></CardTitle>                                    
+                                        <CardText className="bottom-position-center d-block" >
+                                            <button className="top-spacing bottom-spacing button">Rs. {dish.price}</button>
+                                            <span className="clicking-button top-spacing bottom-spacing d-block"  onClick={() => onDishSelect(dish)} >Click for more details</span>
+                                        </CardText>
                                     </CardBody>
-                                </Fade>
-                                : null
-                            }
-                        </CardImgOverlay>
-                </Card>                   
-            </LightgalleryItem>
-        </div>
+                                    : null
+                                }
+                            </CardImgOverlay>
+                        </Fade>
+                    </Card>
+                </Fade>
+            </div>
             
     
             )
@@ -314,21 +243,19 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, su
     }).map((dish) => {
         return(
             <Collapse isOpen={true} style={{height: "max-content"}} className="col-8 col-sm-6 col-md-4 col-lg-3 p-0 bg-white" key={dish.id}>
-                    <Fade>
-                        <FadeTransform
-                            in
-                            transformProps={{
-                                exitTransform: 'scale(0.5) translateY(-50%)'
-                            }}>
-                                    <RenderMenuItem 
-                                        dish={dish} 
-                                        toggleHover={toggleHover}
-                                        hover={hover}
-                                        selectedDish={selectedDish}
-                                        onDishSelect={onDishSelect}
-                                    />
-                        </FadeTransform>
-                    </Fade>
+                <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                        <RenderMenuItem 
+                            dish={dish} 
+                            toggleHover={toggleHover}
+                            hover={hover}
+                            selectedDish={selectedDish}
+                            onDishSelect={onDishSelect}
+                        />
+                </FadeTransform>                   
             </Collapse>
         )
     })    
@@ -356,21 +283,6 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, su
         if(selectedDish != null) 
             
             return(
-                // <Card>
-                //     <CardImg width="100%" height="320px" src={baseUrl + selectedDish.image} alt={selectedDish.name} />
-                //     <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover}  data-event={selectedDish.id}>
-                //         {hover === selectedDish.id ? 
-                //             <Fade className="text-white transparent-black-overlay">
-                //                 <CardBody >
-                //                     <CardTitle><h1 className="d-none d-md-block">{selectedDish.name}</h1><h3 className="d-block d-md-none">{selectedDish.name}</h3></CardTitle>
-                //                     <CardText><p>{selectedDish.description}</p></CardText>
-                //                     <span className="d-flex top-spacing justify-content-center" ><h5>Rs. {selectedDish.price}</h5></span>
-                //                 </CardBody>
-                //             </Fade>
-                //             : null
-                //         }
-                //     </CardImgOverlay>
-                // </Card>
                 <Dishdetail 
                     dish={selectedDish}
                     isLoading={dishesLoading} // isLoading is perfectly fine here since we are using only one dish here
@@ -378,13 +290,12 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, su
                     comments={comments}
                     commentsErrMess={commentsErrMess}
                     postComment={postComment}
-
                     />
             )
         else
         return (
                 <div className="bottom-spacing row ">
-                    {cuisinedishes}  {/* this is a javascript variable that we have defined in the const menu above. */}
+                    {cuisinedishes}
                 </div>    
             );
         }
@@ -610,10 +521,6 @@ class Menu extends Component {
                         postReservation={this.props.postReservation}
                     />
                 </section>
-                <Button outline onClick={this.toggleModal} ><span className="fa fa-pencil fa-lg"></span> Submit Comment</Button>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                
-                </Modal>
                 {console.log(this.state.selectedDish + "hiskj")}
             </div>
         )

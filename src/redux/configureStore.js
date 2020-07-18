@@ -18,7 +18,7 @@ export const ConfigureStore = () => {
             leaders: Leaders,
             ...createForms({
                 feedback: InitialFeedback,
-                reservation: InitialReserve
+                reservation: InitialReserve,
             })
         }),
         applyMiddleware(thunk, logger)  //redux thunk 1
