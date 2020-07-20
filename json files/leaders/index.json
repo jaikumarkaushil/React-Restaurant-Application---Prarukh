@@ -1,5 +1,4 @@
-{
-    "leaders": [
+[
         {
           "id": 0,
           "name": "Hemant Latawa",
@@ -29,5 +28,4 @@
           "featured": true,
           "description": "Voluptate enim consequat proident aliquip ullamco officia labore consectetur."
         }
-      ]
-}
+]
