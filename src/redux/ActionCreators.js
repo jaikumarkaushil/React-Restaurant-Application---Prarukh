@@ -111,7 +111,7 @@ export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
 
-    return fetch(baseUrl + 'dishes')
+    return fetch('https://github.com/jaikumarkaushil/React-Restaurant-Application---Prarukh/blob/master/dishes.json')
         .then(response => {
             if (response.ok) {
               return response;
