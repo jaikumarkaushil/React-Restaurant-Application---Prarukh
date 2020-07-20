@@ -111,7 +111,7 @@ export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
 
-    return fetch('https://github.com/jaikumarkaushil/React-Restaurant-Application---Prarukh/blob/master/dishes.json')
+    return fetch('https://jaikumarkaushil.github.io/React-Restaurant-Application---Prarukh/json files/dishes/index.json')
         .then(response => {
             if (response.ok) {
               return response;
@@ -180,7 +180,7 @@ export const fetchPromos = () => (dispatch) => {
     
     dispatch(promosLoading(true));
 
-    return fetch(baseUrl + 'promotions')
+    return fetch('https://jaikumarkaushil.github.io/React-Restaurant-Application---Prarukh/json files/dishes/index.json')
     .then(response => {
         if (response.ok) {
           return response;
