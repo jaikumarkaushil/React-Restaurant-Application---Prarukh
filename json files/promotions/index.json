@@ -1,5 +1,4 @@
-{
-    "promotions": [
+[
         {
           "id": 0,
           "category": "Breakfast",
@@ -300,5 +299,4 @@
           "featured": true,
           "description": "Eu irure nostrud sit duis excepteur nostrud qui nostrud consequat irure ad."
         }
-      ]
-}
+]
