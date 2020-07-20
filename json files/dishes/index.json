@@ -1,5 +1,5 @@
 
-        {
+{[{
           "id": 0,
           "category": "Breakfast",
           "cuisineId": 0,
@@ -1350,4 +1350,4 @@
           "averageRating": 4,
           "reviews": 893,
           "description": "Eu irure nostrud sit duis excepteur nostrud qui nostrud consequat irure ad."
-        }
+        }]}
