@@ -1,5 +1,4 @@
-{
-    "comments": [
+[
     {
       "id": 0,
       "dishId": 0,
@@ -904,5 +903,4 @@
       "date": "2018-10-16T17:57:28.556094Z",
       "comment": "Enim cupidatat minim nisi Lorem."
     }
-  ]
-}
+ ]
