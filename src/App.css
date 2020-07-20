@@ -217,7 +217,7 @@ header .bm-menu {
         left: 10%;
         top: 26px;
         
-      }
+    }
 }
    
   /* Color/shape of burger icon bars */
@@ -227,7 +227,7 @@ header .bm-menu {
    
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: #a90000;
+    background: #DAA520;
   }
    
   /* Position and sizing of clickable cross button */
@@ -238,7 +238,7 @@ header .bm-menu {
   
   /* Color/shape of close button cross */
   .bm-cross {
-    background: #bdc3c7;
+    background: #DAA520;
   }
   
   /*
@@ -282,7 +282,7 @@ header .bm-menu {
 /* home component */
 .home_cover {
     height:100vh;
-    background-image: url(http://localhost:3001/assets/images/restaurant_cover.jpg);
+    background-image: url(https://i.ibb.co/FJXnNMT/Interior-of-the-Chinese-restaurant.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -328,7 +328,7 @@ header .bm-menu {
 }
 /* section - intro-view */
 .view {
-    background-image: url(http://localhost:3001/assets/images/blur-image2.jpg);
+    background-image: url(https://i.ibb.co/30WTcXH/blur-image2.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -390,12 +390,12 @@ header .bm-menu {
 .know-more {
     height: 100%;
     color: floralwhite;
-    background-image: url(http://localhost:3001/assets/images/background-pattern.jpg);
+    background-image: url(https://i.ibb.co/M1Wvbgh/background-pattern.jpg);
 }
 /* end */
 /* trendslist */
 .trendslist {
-    background-image: url(http://localhost:3001/assets/images/trendslist.jpg);
+    background-image: url(https://i.ibb.co/x82rfq0/trendslist.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -406,7 +406,7 @@ header .bm-menu {
 /* end */
 /* cuisine-gallery */
 .cuisine-gallery {
-    background-image: url(http://localhost:3001/assets/images/trendslist.jpg);
+    background-image: url(https://i.ibb.co/qW7ZJM2/Home-Cover2.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -466,7 +466,7 @@ header .bm-menu {
 /* end */
 /* populardishes-carousel */
 .popular-dishes-carousel {
-    background-image: url(http://localhost:3001/assets/images/trendslist.jpg);
+    background-image: url(https://i.ibb.co/x82rfq0/trendslist.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -479,7 +479,7 @@ header .bm-menu {
 /* end */
 /* Reservation Form */
     .book-or-order {
-        background-image: url(http://localhost:3001/assets/images/bookatable.jpg);
+        background-image: url(https://i.ibb.co/rQ8XCWx/bookatable.jpg);
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
@@ -492,7 +492,7 @@ header .bm-menu {
 /* Menu */
 .menu_cover_1 {
     height:100vh;
-    background-image: url(http://localhost:3001/assets/images/breakfast2.jpg);
+    background-image: url(https://i.ibb.co/DfQrWL4/Healthy-breakfast-greek-yogurt-granola-and-strawberry-bowl-in-hands-of-woman-wearing-white-loose-kni.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -502,7 +502,8 @@ header .bm-menu {
 }
 .menu_cover_2 {
     height:100vh;
-    background-image: url(http://localhost:3001/assets/images/vegan-liftz-unsplash.jpg);
+    background-image: url(https://i.ibb.co/C2KSHnV/vegan-liftz-unsplash.jpg
+    );
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -512,7 +513,8 @@ header .bm-menu {
 }
 .menu_cover_3 {
     height:100vh;
-    background-image: url(http://localhost:3001/assets/images/Lunch-hermes-rivera-unsplash.jpg);
+    background-image: url(https://i.ibb.co/jghb1rC/Lunch-hermes-rivera-unsplash.jpg
+    );
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -535,7 +537,7 @@ header .bm-menu {
 /* Popular Dishes */
 .popular_dishes_cover {
     height:100vh;
-    background-image: url(http://localhost:3001/assets/images/restaurant_cover.jpg);
+    background-image: url(https://i.ibb.co/71yyG9w/Home-Cover2jpg.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -605,7 +607,7 @@ header .bm-menu {
 }
 .contact {
     height:100%;
-    background-image: url(http://localhost:3001/assets/images/bookatable2.jpg);
+    background-image: url(https://i.ibb.co/xYShrgZ/bookatable2.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

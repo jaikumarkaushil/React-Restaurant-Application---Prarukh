@@ -14,6 +14,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { postReservation, postFeedback, postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';  //redux action 4
 
 import { actions } from 'react-redux-form';
+
 const mapStateToProps = state => {
     return {
       dishes: state.dishes,
@@ -45,6 +46,7 @@ class Main extends Component {
     this.props.fetchPromos();
     this.props.fetchLeaders();
   }
+  
   // redux thunk 7, add the dishesLoading, dishesErrMess for homepage, having multiple dishes and isLoading and errMess for single dish in the dishdetail component 
   render() {
     const HomePage = () => {

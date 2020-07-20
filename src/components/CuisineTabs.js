@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Collapse, Row, Col, Card, CardImg, CardBody, CardTitle, CardImgOverlay, CardText } from 'reactstrap';
 import { Fade } from 'react-awesome-reveal';
 import { FadeTransform } from 'react-animation-components';
-import { baseUrl } from '../shared/baseUrl';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
 import { Loading } from './LoadingComponent';
@@ -13,9 +12,9 @@ function RenderMenuItem({dish, toggleHover, hover}) {
     return(
         <div>
             <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
-            <LightgalleryItem group="any" src={baseUrl + dish.image} subHtml={".photocaption"} closable={true}>
+            <LightgalleryItem group="any" src={dish.image} subHtml={".photocaption"} closable={true}>
                     <Card key={dish.id} style={{cursor: "pointer"}}>
-                        <CardImg width="100%" top src={baseUrl + dish.image} alt={dish.name} />
+                        <CardImg width="100%" top src={dish.image} alt={dish.name} />
                         <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover} data-event={dish.id}>
                             {hover === dish.id ? 
                                 <Fade className="text-white transparent-black-overlay d-flex flex-row align-items-center text-center">

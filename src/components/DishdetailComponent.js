@@ -5,8 +5,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { HashLink as Link} from 'react-router-hash-link';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent'
-import { baseUrl } from '../shared/baseUrl';
-
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = (val) => val && val.length;
@@ -23,7 +21,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
                 }}>
                 <Card className="row flex-row">
                     <div className="col-md-3 col-sm-6 col-12 p-4">
-                        <CardImg width="100%" height="200px" src={baseUrl + dish.image} alt={dish.name} />
+                        <CardImg width="100%" height="200px" src={dish.image} alt={dish.name} />
                     </div>
                     <div className="col-md-9 col-sm-6 col-12">
                         <CardBody className="row">
@@ -138,6 +136,9 @@ class CommentForm extends Component {
             isModalOpen: false
         };
     }
+    shouldComponentUpdate(nextProps, nextState){
+        return nextProps.next !== this.props.next  
+    }
 
     toggleModal() {
         
@@ -228,4 +229,4 @@ class CommentForm extends Component {
     }
 };
 
-export default Dishdetail;
+export default React.memo(Dishdetail);

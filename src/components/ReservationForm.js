@@ -16,6 +16,9 @@ class ReservationForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         
     }
+    shouldComponentUpdate(nextProps, nextState){
+        return nextProps.next !== this.props.next  
+    }
 
     handleSubmit(values) {
         // console.log("Current State is: " + JSON.stringify(values));
@@ -136,4 +139,4 @@ class ReservationForm extends Component {
     } 
 }
 
-export default ReservationForm; 
+export default React.memo(ReservationForm); 

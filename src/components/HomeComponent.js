@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Fade } from 'react-reveal';
 import { Slide } from 'react-awesome-reveal';
-import { baseUrl } from '../shared/baseUrl';
 import ReservationForm from './ReservationForm';
 import { HashLink} from 'react-router-hash-link';
 import { Link } from 'react-scroll';
@@ -48,7 +47,7 @@ const MenuCarousel = () => {
                         exitTransform: 'scale(0.5) translateY(-50%)'
                     }}>
                     <div className="d-flex flex-column align-items-center">
-                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="assets/images/Home_Breakfast_2.jpg" alt="Breakfast" />
+                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="https://i.ibb.co/Q9wrhn3/Home-Breakfast-2.jpg" alt="Breakfast" />
                         <Link to="breakfast" smooth={true} offset={-280} duration={2000} className="col-11 mt-3">
                             <button className="button col-12">
                                 <Trigger >
@@ -67,7 +66,7 @@ const MenuCarousel = () => {
                         exitTransform: 'scale(0.5) translateY(-50%)'
                     }}>
                     <div className="d-flex flex-column align-items-center">
-                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="assets/images/Home_Dinner_2.jpg" alt="Lunch" />
+                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="https://i.ibb.co/qB2k7sT/Home-Dinner-2.jpg" alt="Lunch" />
                         <Link to="lunch" smooth={true} offset={-100} duration={2000} className="col-11 mt-3">
                             <button className="button col-12">
                                 <Trigger >
@@ -86,7 +85,7 @@ const MenuCarousel = () => {
                         exitTransform: 'scale(0.5) translateY(-50%)'
                     }}>
                     <div className="d-flex flex-column align-items-center">
-                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="assets/images/Home_Lunch_5.jpg" alt="Dinner"/>
+                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="https://i.ibb.co/zXYc8f0/Home-Lunch-5.jpg" alt="Dinner"/>
                         <Link to="dinner" smooth={true} offset={-100} duration={2000} className="col-11 mt-3">
                             <button className="button col-12">
                                 <Trigger >
@@ -156,8 +155,8 @@ const DishesCarousel =({dishes, dishesLoading, dishesErrMess}) => {
     const populardishes = dishes.map((dish) => {
         return(
             <Collapse key={dish.id} isOpen={true} className="p-0 bg-white">
-                <LightgalleryItem group="any" src={baseUrl + dish.image} subHtml={".photocaption"} closable={true}>
-                    <img width="100%" height="450vmin" src={baseUrl + dish.image} alt={dish.name} />                               
+                <LightgalleryItem group="any" src={dish.image} subHtml={".photocaption"} closable={true}>
+                    <img width="100%" height="450vmin" src={dish.image} alt={dish.name} />                               
                 </LightgalleryItem>
             </Collapse>
         )
@@ -194,7 +193,7 @@ function TrendItem ({item}){
         <Fade>
             <Card className=" row flex-row">
                 <div className="col-md-3 col-sm-6 col-12 p-4">
-                    <CardImg height="200px" src={baseUrl + item.image} alt={item.name} />
+                    <CardImg height="200px" src={item.image} alt={item.name} />
                 </div>
                 <div className="col-md-9 col-sm-6 col-12">
                     <CardBody className="row">
@@ -250,14 +249,20 @@ function Home(props) {
                 <h1 className="text-center italic golden top-spacing bottom-spacing" >-- Dynamic Flavours --</h1>
                 <div className="view">
                     <div className="view-alignment">
-                        <div className="intro-view1"  >
-                            <img src='assets/images/intro-view1.jpg' alt="img"/>
+                        <div className="intro-view1">
+                            <Slide triggerOnce delay={1000}>
+                                <img src='https://i.ibb.co/g4qk5NS/intro-view1.jpg' alt="img"/>
+                            </Slide>
                         </div>
-                        <div className="intro-view2" >
-                            <img src='assets/images/intro-view2.jpg' alt="img"/>
+                        <div className="intro-view2">
+                            <Slide triggerOnce delay={1000}>
+                                <img src='https://i.ibb.co/qrbgMDj/intro-view2.jpg' alt="img"/>
+                            </Slide>
                         </div>
                         <div className="intro-view3" >
-                            <img src='assets/images/intro-view3.jpg' alt="img"/>
+                            <Slide triggerOnce delay={1000}>
+                                <img src='https://i.ibb.co/1qfdWvq/intro-view3.jpg' alt="img"/>
+                            </Slide>
                         </div>
                     </div>
                     <h3 className="intro-text text-center d-md-none">Eat food, eat healthy!</h3>
@@ -273,14 +278,14 @@ function Home(props) {
                     </Col>
                     <Col className="col-12 col-md-6 p-0 top-spacing">
                         <Slide direction="right" triggerOnce delay={1000}>
-                            <img className="img-fluid" src="http://localhost:3001/assets/images/Home_Breakfast_4.jpg" alt="img" />
+                            <img className="img-fluid" src="https://i.ibb.co/4tHHmh8/Home-Breakfast-4.jpg" alt="img" />
                         </Slide>
                     </Col>
                 </Row>
                 <Row className="know-more" name="lunch">
                     <Col className="col-12 col-md-6 p-0 bottom-spacing">
                         <Slide triggerOnce delay={1000}>
-                            <img className="img-fluid" src="http://localhost:3001/assets/images/Home_Lunch_7.jpg" alt="img" />
+                            <img className="img-fluid" src="https://i.ibb.co/V2RmvnF/Home-Lunch-7.jpg.jpg" alt="img" />
                         </Slide>
                     </Col>
                     <Col className="col-12 col-md-6 p-0 center-alignment">
@@ -297,7 +302,7 @@ function Home(props) {
                     </Col>
                     <Col className="col-12 col-md-6 p-0">
                         <Slide direction="right" triggerOnce delay={1000}>
-                            <img className="img-fluid" src="http://localhost:3001/assets/images/Home_Dinner_3.jpg" alt="img" />
+                            <img className="img-fluid" src="https://i.ibb.co/M6SCcqD/Home-Dinner-3.jpg" alt="img" />
                         </Slide>
                     </Col>
                 </Row>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardBody, CardImg, CardTitle, CardText } from 'reactstrap';
 import Contact from './ContactComponent';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
 import { Fade } from 'react-animation-components';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
@@ -29,7 +28,7 @@ function RenderLeader({leader, isLoading, errMess}) {
     else
         return (
             <Card key={leader.id} className="mx-xl-4 mx-lg-3 mx-1" >
-                <CardImg width="100%" height="300vh" top src={baseUrl + leader.image} alt={leader.name} />
+                <CardImg width="100%" height="300vh" top src={leader.image} alt={leader.name} />
                 <CardBody >
                     <CardTitle><h3>{leader.name}</h3></CardTitle>
                     <CardText className="d-none d-md-block">{leader.description}</CardText>
@@ -59,7 +58,7 @@ function LeaderList(props) {
     };
     const leaders = props.leaders.leaders.map((leader) => {
         return (
-            <Fade in key={leader._id}>
+            <Fade in key={leader.id}>
                 <RenderLeader leader={leader} />
             </Fade>
         );
@@ -131,7 +130,7 @@ function About(props) {
                 <div className="row bottom-spacing">
                     <div className="col-12 col-md-6 top-spacing bottom-spacing center-alignment ">
                         <Slide delay={600} triggerOnce >
-                            <img width="100%" src={baseUrl + "assets/images/OurStory.jpeg"} alt="OurStory.jpg" />
+                            <img width="100%" src="https://i.ibb.co/Wfj438y/OurStory.jpg" alt="OurStory.jpg" />
                         </Slide>
                     </div>
                     <div className="col-12 col-md-6 center-alignment top-spacing">

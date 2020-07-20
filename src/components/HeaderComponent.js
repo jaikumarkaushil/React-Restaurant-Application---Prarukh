@@ -48,7 +48,7 @@ class Header extends Component {
       <div>
         <Navbar dark fixed="top" className="d-flex flex-row justify-content-xl-around justify-content-center">
           <NavbarBrand href="/">
-            <h1 className="italic" >Prarukh</h1>
+            <h1 className="italic golden" >Prarukh</h1>
           </NavbarBrand>
           <Nav navbar className="d-flex flex-row justify-content-end">
             <NavItem className="mx-lg-4 d-none d-lg-block">

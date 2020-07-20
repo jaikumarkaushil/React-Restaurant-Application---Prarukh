@@ -16,6 +16,9 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         
     }
+    shouldComponentUpdate(nextProps, nextState){
+        return nextProps.next !== this.props.next  
+    }
 
     handleSubmit(values) {
         console.log("Current State is: " + JSON.stringify(values));
@@ -146,7 +149,6 @@ class Contact extends Component {
                                     </button>
                                 </Col>
                             </Row>
-
                         </Form>
                     </div>
                 </div>
@@ -156,4 +158,4 @@ class Contact extends Component {
     } 
 }
 
-export default React.memo(Contact); 
+export default Contact; 

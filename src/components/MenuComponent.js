@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Collapse, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay } from 'reactstrap';
 import { Fade } from 'react-reveal';
 import { FadeTransform } from 'react-animation-components';
-import { baseUrl } from '../shared/baseUrl';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
 import { Link } from 'react-scroll';
@@ -57,7 +56,7 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
         ),
         customPaging: function(i) {
             return (
-                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src={`${baseUrl}/assets/images/breakfast2.jpg`} alt="breakfast.jpg"/>
+                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src="https://i.ibb.co/M1Wvbgh/background-pattern.jpg" alt="breakfast.jpg"/>
             );
             },
         responsive: [
@@ -170,7 +169,7 @@ function RenderMenuItem({dish, toggleHover, hover, onDishSelect}) {
                 <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
                 <Fade>
                     <Card className="text-white">
-                        <CardImg width="100%" height="320px" src={baseUrl + dish.image} alt={dish.name} />
+                        <CardImg width="100%" height="320px" src={dish.image} alt={dish.name} />
                             <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover} data-event={dish.id}>
                                 {hover === dish.id ? 
                                     <CardBody className="text-center transparent-black-overlay bottom-position-parent">
