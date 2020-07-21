@@ -139,4 +139,4 @@ class ReservationForm extends Component {
     } 
 }
 
-export default React.memo(ReservationForm); 
+export default ReservationForm; 

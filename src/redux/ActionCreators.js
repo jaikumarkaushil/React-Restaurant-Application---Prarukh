@@ -22,7 +22,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
           method: 'POST',
           body: JSON.stringify(newComment),
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           credentials: 'same-origin'
     })
@@ -102,7 +102,7 @@ export const postReservation = (reservation) => (dispatch) => {
               throw errmess;
           })
           .then(response => response.json())
-          .then(response => {console.log('Reservation', response); alert('Thank you for your reserving your food with us!\n'+JSON.stringify(response)); })
+          .then(response => {console.log('Reservation', response); alert('Thank you for your reserving your food with us!\n' + JSON.stringify(response)); })
           .catch(error =>  { console.log('Post Reservation', error.message); 
               alert('Your Reservation Form could not be posted\nError: '+error.message); });
   };
@@ -111,7 +111,7 @@ export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
 
-    return fetch('https://jaikumarkaushil.github.io/React-Restaurant-Application---Prarukh/json files/dishes/index.json')
+    return fetch(baseUrl + 'dishes')
         .then(response => {
             if (response.ok) {
               return response;
@@ -180,7 +180,7 @@ export const fetchPromos = () => (dispatch) => {
     
     dispatch(promosLoading(true));
 
-    return fetch('https://jaikumarkaushil.github.io/React-Restaurant-Application---Prarukh/json files/dishes/index.json')
+    return fetch(baseUrl + 'promotions')
     .then(response => {
         if (response.ok) {
           return response;

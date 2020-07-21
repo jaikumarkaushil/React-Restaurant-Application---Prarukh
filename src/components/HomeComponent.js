@@ -156,7 +156,7 @@ const DishesCarousel =({dishes, dishesLoading, dishesErrMess}) => {
         return(
             <Collapse key={dish.id} isOpen={true} className="p-0 bg-white">
                 <LightgalleryItem group="any" src={dish.image} subHtml={".photocaption"} closable={true}>
-                    <img width="100%" height="450vmin" src={dish.image} alt={dish.name} />                               
+                    <img style={{cursor: "pointer"}} width="100%" height="450vmin" src={dish.image} alt={dish.name} />                               
                 </LightgalleryItem>
             </Collapse>
         )
@@ -335,8 +335,8 @@ function Home(props) {
                     dishesErrMess={props.dishesErrMess}
                     />
             </section> 
-            <section id="test" className="popular-dishes-carousel bottom-spacing">
-                <h1 className="top-spacing italic golden overlay-white text-center  mb-0">--- Most Popular Dishes only for You! ---</h1>
+            <section className="popular-dishes-carousel bottom-spacing">
+                <h1 className="top-spacing italic golden overlay-white text-center mb-0">--- Most Popular Dishes only for You! ---</h1>
                 <h4 className="bottom-spacing golden overlay-white text-center"><em>“One cannot think well, love well, sleep well, if one has not dined well.” ...</em></h4>
                 <DishesCarousel 
                     dishes={props.promotions}

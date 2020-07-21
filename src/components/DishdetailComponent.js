@@ -136,9 +136,6 @@ class CommentForm extends Component {
             isModalOpen: false
         };
     }
-    shouldComponentUpdate(nextProps, nextState){
-        return nextProps.next !== this.props.next  
-    }
 
     toggleModal() {
         
@@ -156,7 +153,7 @@ class CommentForm extends Component {
         
         return(
             <div className="d-flex flex-row justify-content-center top-spacing">
-                <button className="button2" outline onClick={this.toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comment</button>
+                <button className="button2" onClick={this.toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comment</button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
@@ -229,4 +226,4 @@ class CommentForm extends Component {
     }
 };
 
-export default React.memo(Dishdetail);
+export default Dishdetail;

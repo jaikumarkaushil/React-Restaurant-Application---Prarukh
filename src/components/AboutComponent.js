@@ -185,4 +185,4 @@ function About(props) {
     );
 }
 
-export default React.memo(About);    
+export default About;    

@@ -1,2 +1,2 @@
 // fetch 1
-export const baseUrl = 'https://jaikumarkaushil.github.io/React-Restaurant-Application---Prarukh/json files/';
+export const baseUrl = 'https://prarukh-json-files.herokuapp.com/';

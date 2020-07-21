@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
   postFeedback: (firstname, lastname, telnum, email, agree, contactType, message, date) => dispatch(postFeedback(firstname, lastname, telnum, email, agree, contactType, message, date)),
-  postReservation: (firstname, lastname, telnum, email, agree, contactType, message, date) => dispatch(postReservation(firstname, lastname, telnum, email, agree, contactType, message, date)),
+  postReservation: (firstname, lastname, telnum, email, message, date) => dispatch(postReservation(firstname, lastname, telnum, email, message, date)),
   resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },
   resetReservationForm: () => { dispatch(actions.reset('reservation')) },
   fetchDishes: () => {dispatch(fetchDishes())},
@@ -46,7 +46,6 @@ class Main extends Component {
     this.props.fetchPromos();
     this.props.fetchLeaders();
   }
-  
   // redux thunk 7, add the dishesLoading, dishesErrMess for homepage, having multiple dishes and isLoading and errMess for single dish in the dishdetail component 
   render() {
     const HomePage = () => {

@@ -523,4 +523,4 @@ class Menu extends Component {
     }
 }
 
-export default React.memo(Menu);
+export default Menu;
