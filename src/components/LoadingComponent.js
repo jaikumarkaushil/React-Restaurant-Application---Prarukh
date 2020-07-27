@@ -1,10 +1,11 @@
 import React from 'react';
-// redux thunk 6, loading when data is being fetched
 export const Loading = () => {
     return(
-        <div className="col-12">
-            <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
-            <p>Loading . . .</p>
+        <div className="position-parent">
+            <div className="middle-position-center">
+                <span className="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></span>
+                <p>Loading . . .</p>
+            </div>
         </div>
     )
 }

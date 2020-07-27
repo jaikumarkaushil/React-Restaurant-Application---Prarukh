@@ -14,9 +14,10 @@ html { font-size: calc( 10px + (14 - 10) * (100vw - 768) / (1000 - 768) ); }
 
 html { font-size: calc( 10px + (12 - 10) * (100vw - 1000) / (1500 - 1000) ); }
 }
-.bottom-position-parent {
+.position-parent {
     position: relative;
     width:100%;
+    height: 100vh;
 }
 .bottom-position-center {
     position: absolute;
@@ -25,6 +26,14 @@ html { font-size: calc( 10px + (12 - 10) * (100vw - 1000) / (1500 - 1000) ); }
     width:100%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%)
+}
+
+.middle-position-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 /* h1 {
     font-size: 2.4em;
@@ -148,8 +157,7 @@ h4 {
     font-style: italic;
 }
 .header-spacing {
-    position: relative;
-    top: 15%;
+    padding-top: 7% ;
 }
 .top-spacing {
     padding-top: 5%;
@@ -281,16 +289,15 @@ header .bm-menu {
 
 /* home component */
 .home_cover {
-    height:100vh;
-    background-image: url(https://i.ibb.co/FJXnNMT/Interior-of-the-Chinese-restaurant.jpg);
+    background-image: url("/assets/images/restaurant_cover.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     overflow: hidden;
     width:100%;
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
+    height:100vh;
+    position: relative;
 }
 
 .home_overlay {
@@ -322,13 +329,10 @@ header .bm-menu {
     color: floralwhite;
     z-index: 10;
 }
-.disableBlur {
-    filter: blur(0);
-    -webkit-filter: blur(0);
-}
+
 /* section - intro-view */
 .view {
-    background-image: url(https://i.ibb.co/30WTcXH/blur-image2.jpg);
+    background-image: url("/assets/images/blur-image2.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -390,12 +394,12 @@ header .bm-menu {
 .know-more {
     height: 100%;
     color: floralwhite;
-    background-image: url(https://i.ibb.co/M1Wvbgh/background-pattern.jpg);
+    background-image: url("/assets/images/background-pattern.jpg");
 }
 /* end */
 /* trendslist */
 .trendslist {
-    background-image: url(https://i.ibb.co/x82rfq0/trendslist.jpg);
+    background-image: url("/assets/images/trendslist.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -406,7 +410,7 @@ header .bm-menu {
 /* end */
 /* cuisine-gallery */
 .cuisine-gallery {
-    background-image: url(https://i.ibb.co/qW7ZJM2/Home-Cover2.jpg);
+    background-image: url("/assets/images/Home-Cover2.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -466,7 +470,7 @@ header .bm-menu {
 /* end */
 /* populardishes-carousel */
 .popular-dishes-carousel {
-    background-image: url(https://i.ibb.co/x82rfq0/trendslist.jpg);
+    background-image: url("/assets/images/trendslist.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -479,7 +483,7 @@ header .bm-menu {
 /* end */
 /* Reservation Form */
     .book-or-order {
-        background-image: url(https://i.ibb.co/rQ8XCWx/bookatable.jpg);
+        background-image: url("/assets/images/bookatable.jpg");
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
@@ -492,7 +496,7 @@ header .bm-menu {
 /* Menu */
 .menu_cover_1 {
     height:100vh;
-    background-image: url(https://i.ibb.co/DfQrWL4/Healthy-breakfast-greek-yogurt-granola-and-strawberry-bowl-in-hands-of-woman-wearing-white-loose-kni.jpg);
+    background-image: url("/assets/images/breakfast2.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -502,8 +506,7 @@ header .bm-menu {
 }
 .menu_cover_2 {
     height:100vh;
-    background-image: url(https://i.ibb.co/C2KSHnV/vegan-liftz-unsplash.jpg
-    );
+    background-image: url("/assets/images/vegan-liftz-unsplash.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -513,8 +516,7 @@ header .bm-menu {
 }
 .menu_cover_3 {
     height:100vh;
-    background-image: url(https://i.ibb.co/jghb1rC/Lunch-hermes-rivera-unsplash.jpg
-    );
+    background-image: url("/assets/images/Lunch-hermes-rivera-unsplash.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -537,7 +539,7 @@ header .bm-menu {
 /* Popular Dishes */
 .popular_dishes_cover {
     height:100vh;
-    background-image: url(https://i.ibb.co/71yyG9w/Home-Cover2jpg.jpg);
+    background-image: url("/assets/images/Home-Cover2jpg.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -607,7 +609,7 @@ header .bm-menu {
 }
 .contact {
     height:100%;
-    background-image: url(https://i.ibb.co/xYShrgZ/bookatable2.jpg);
+    background-image: url("/assets/images/bookatable2.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -709,15 +711,4 @@ address{
     opacity: 1;
     transition: all 3000ms ease-in;
     transform: translateX(-50%);
-}
-
-.page-exit {
-    opacity: 1;
-    transform: translateX(0%);
-}
-
-.page-exit-active {
-    opacity: 0.01;
-    transform: translateX(100%);
-    transition: all 300ms ease-out;
 }

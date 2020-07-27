@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import Main from './components/MainComponent';
+/* eslint-disable import/first */
+import React, { Component, Suspense } from 'react';
+const Main = React.lazy(() => import('./components/MainComponent'));
+import { Loading } from './components/LoadingComponent';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom'; //w2.4 importing Browser router
 import { Provider } from 'react-redux';
@@ -26,7 +28,9 @@ class App extends Component {
             //     );
             // }}
           >
-          <Main />
+          <Suspense fallback={<Loading/>}>
+            <Main />
+          </Suspense>
           </LightgalleryProvider>
         </div>
         </BrowserRouter>

@@ -4,13 +4,13 @@ import { Fade } from 'react-reveal';
 import { FadeTransform } from 'react-animation-components';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
+import {Link as Linking } from 'react-router-dom';
 import { Link } from 'react-scroll';
 import { Loading } from './LoadingComponent';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ReservationForm from './ReservationForm';
-import Dishdetail from './DishdetailComponent';
 
 
 function NextArrow(props) {
@@ -56,7 +56,7 @@ const MenuCarousel =({dishesLoading, dishesErrMess}) => {
         ),
         customPaging: function(i) {
             return (
-                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src="https://i.ibb.co/M1Wvbgh/background-pattern.jpg" alt="breakfast.jpg"/>
+                    <img width="10px" height="10px" style={{borderRadius: "50%"}} src="/assets/images/background-pattern.jpg" alt="breakfast.jpg"/>
             );
             },
         responsive: [
@@ -166,24 +166,26 @@ function RenderMenuItem({dish, toggleHover, hover, onDishSelect}) {
         return(
                 
             <div key={dish.id}>
+                
                 <div className="photocaption d-none">{dish.name} | Rs. {dish.price}</div>
                 <Fade>
                     <Card className="text-white">
                         <CardImg width="100%" height="320px" src={dish.image} alt={dish.name} />
-                            <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover} data-event={dish.id}>
-                                {hover === dish.id ? 
-                                    <CardBody className="text-center transparent-black-overlay bottom-position-parent">
-                                        <CardTitle><h3 className="d-none d-md-block">{dish.name}</h3><h4 className="d-block d-md-none">{dish.name}</h4></CardTitle>                                    
-                                        <CardText className="bottom-position-center d-block" >
-                                            <button className="top-spacing bottom-spacing button">Rs. {dish.price}</button>
-                                            <span className="clicking-button top-spacing bottom-spacing d-block"  onClick={() => onDishSelect(dish)} >Click for more details</span>
-                                        </CardText>
-                                    </CardBody>
-                                    : null
-                                }
-                            </CardImgOverlay>
+                        <CardImgOverlay onMouseEnter={toggleHover} onMouseLeave={toggleHover} data-event={dish.id}>
+                            {hover === dish.id ? 
+                                <CardBody className="text-center transparent-black-overlay position-parent">
+                                    <CardTitle><h3 className="d-none d-md-block">{dish.name}</h3><h4 className="d-block d-md-none">{dish.name}</h4></CardTitle>                                    
+                                    <CardText className="bottom-position-center d-block" >
+                                        <button className="top-spacing bottom-spacing button">Rs. {dish.price}</button>
+                                        <Linking to={`/menu/${dish.id}`}><span className="clicking-button top-spacing bottom-spacing d-block text-white"  onClick={() => onDishSelect(dish)} >Click for more details</span></Linking>
+                                    </CardText>
+                                </CardBody>
+                                : null
+                            }
+                        </CardImgOverlay>
                     </Card>
                 </Fade>
+                
             </div>
             
     
@@ -275,19 +277,19 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, category, su
 
     else {
         
-        if(selectedDish != null) 
+        // if(selectedDish != null) 
             
-            return(
-                <Dishdetail 
-                    dish={selectedDish}
-                    isLoading={dishesLoading} // isLoading is perfectly fine here since we are using only one dish here
-                    errMess={dishesErrMess}
-                    comments={comments}
-                    commentsErrMess={commentsErrMess}
-                    postComment={postComment}
-                    />
-            )
-        else
+        //     return(
+        //         <Dishdetail 
+        //             dish={selectedDish}
+        //             isLoading={dishesLoading} // isLoading is perfectly fine here since we are using only one dish here
+        //             errMess={dishesErrMess}
+        //             comments={comments}
+        //             commentsErrMess={commentsErrMess}
+        //             postComment={postComment}
+        //             />
+        //     )
+        // else
         return (
                 <div className="bottom-spacing row ">
                     {cuisinedishes}

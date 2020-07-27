@@ -36,7 +36,7 @@ function DishesMenu({dishes, dishesLoading, dishesErrMess, cuisine, toggleHover,
     const cuisinedishes = dishes.filter((filtereddish) => filtereddish.cuisine === cuisine).map((dish) => {
         return(
             <Collapse key={dish.id} isOpen={true} className="gallery p-0">
-                    <Fade key={dish.id}>
+                    <Fade key={dish.id} triggerOnce>
                         <FadeTransform
                             in
                             transformProps={{

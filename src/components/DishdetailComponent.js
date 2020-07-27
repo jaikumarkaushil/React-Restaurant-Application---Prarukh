@@ -97,7 +97,7 @@ const Dishdetail = (props) => {
     }
     else if (props.dish != null) {
         return (
-            <div name="dishdetail" className="col-12 col-lg-10 offset-lg-1 containter-fluid bottom-spacing">
+            <div name="dishdetail" className="col-12 col-lg-10 offset-lg-1 containter-fluid bottom-spacing mt-5 pt-5">
                 <h2>
                     <Breadcrumb>
                             <BreadcrumbItem><Link to='/menu/#menu'>Menu</Link></BreadcrumbItem>

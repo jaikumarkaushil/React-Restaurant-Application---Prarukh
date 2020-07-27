@@ -4,50 +4,45 @@ import { Loading } from './LoadingComponent';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { Fade } from 'react-reveal';
+import { Fade } from 'react-awesome-reveal';
 import { Slide } from 'react-awesome-reveal';
 import ReservationForm from './ReservationForm';
 import { HashLink} from 'react-router-hash-link';
 import { Link } from 'react-scroll';
-import { FadeTransform } from 'react-animation-components';
 import Trigger from '../styles/Trigger';
 import DiagonalSwipe from '../styles/diagonalSwipe';
 import CuisineTabs from './CuisineTabs';
 import { LightgalleryItem } from "react-lightgallery";
+import { CSSTransition } from 'react-transition-group';
 
 
 const MenuCarousel = () => {
     var settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
+        speed: 500,
+        pauseOnHover: true,
         responsive: [
             {
             breakpoint: 1000,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                speed: 500,
-                infinite: true,
-                dots: false,
+                speed: 1000,
                 autoplay: true,
                 autoplaySpeed: 2000,
+                pauseOnHover: true
                 }
             }
         ]
     };
     return(
-        <Slider {...settings} className="container row bottom-spacing">
-            <div>
-                <FadeTransform
-                    in
-                    transformProps={{
-                        exitTransform: 'scale(0.5) translateY(-50%)'
-                    }}>
+        
+            <Slider {...settings} className="container row pb-4">
                     <div className="d-flex flex-column align-items-center">
-                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="https://i.ibb.co/Q9wrhn3/Home-Breakfast-2.jpg" alt="Breakfast" />
+                        <CSSTransition classNames="step" timeout={1000}>
+                            <img style={{borderRadius: "6px"}} width="85%" height="300px" src="/assets/images/Home_Breakfast_2.jpg" alt="Breakfast" />
+                        </CSSTransition>
                         <Link to="breakfast" smooth={true} offset={-280} duration={2000} className="col-11 mt-3">
                             <button className="button col-12">
                                 <Trigger >
@@ -57,16 +52,11 @@ const MenuCarousel = () => {
                             </button>
                         </Link>
                     </div>
-                </FadeTransform>
-            </div>
-            <div>
-                <FadeTransform
-                    in
-                    transformProps={{
-                        exitTransform: 'scale(0.5) translateY(-50%)'
-                    }}>
+
                     <div className="d-flex flex-column align-items-center">
-                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="https://i.ibb.co/qB2k7sT/Home-Dinner-2.jpg" alt="Lunch" />
+                        <CSSTransition classNames="step" timeout={1000}>
+                            <img style={{borderRadius: "6px"}} width="85%" height="300px" src="/assets/images/Home_Dinner_2.jpg" alt="Lunch" />
+                        </CSSTransition>
                         <Link to="lunch" smooth={true} offset={-100} duration={2000} className="col-11 mt-3">
                             <button className="button col-12">
                                 <Trigger >
@@ -76,16 +66,11 @@ const MenuCarousel = () => {
                             </button>
                         </Link>
                     </div>
-                </FadeTransform>
-            </div>
-            <div>
-                <FadeTransform
-                    in
-                    transformProps={{
-                        exitTransform: 'scale(0.5) translateY(-50%)'
-                    }}>
+                
                     <div className="d-flex flex-column align-items-center">
-                        <img style={{borderRadius: "6px"}} width="85%" height="300px" src="https://i.ibb.co/zXYc8f0/Home-Lunch-5.jpg" alt="Dinner"/>
+                        <CSSTransition classNames="step" timeout={1000}>
+                            <img style={{borderRadius: "6px"}} width="85%" height="300px" src="assets/images/Home_Lunch_5.jpg" alt="Dinner"/>
+                        </CSSTransition>
                         <Link to="dinner" smooth={true} offset={-100} duration={2000} className="col-11 mt-3">
                             <button className="button col-12">
                                 <Trigger >
@@ -95,9 +80,7 @@ const MenuCarousel = () => {
                             </button>
                         </Link>
                     </div>
-                </FadeTransform>
-            </div>
-        </Slider>
+            </Slider>
     )
 }
 
@@ -211,7 +194,6 @@ function TrendItem ({item}){
         </Fade>
     )
 }
-
 function Home(props) {
     const trends = props.dishes.filter((filterdish) => filterdish.trend).map((dish) => {  
         return (
@@ -222,48 +204,45 @@ function Home(props) {
     });
     return(
         <div>
-            <div className="home_cover"></div>
-            <div className="home_overlay">
-                <div className="header-spacing center-alignment text-white">
-                    <h1 className="bottom-spacing d-none d-md-block text-center" >A Multicuisine Restaurant</h1>
-                    <h2 className="bottom-spacing d-block d-md-none text-center" >A Multicuisine Restaurant</h2>
-                    <MenuCarousel />
-                    <div className="col-8 p-3 d-flex justify-content-center top-spacing">
-                        <HashLink smooth to="/menu/#menu" scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-                            <button className="button col-12">
-                                <Trigger >
-                                    <span className="button-content">Full Menu</span>  
-                                    <DiagonalSwipe></DiagonalSwipe> 
-                                </Trigger>
-                            </button>
-                        </HashLink>
+            <div className="home_cover">
+                <div className="home_overlay">
+                    <div className="header-spacing center-alignment text-white">
+                        <h1 className="p-3 d-none d-md-block text-center" >A Multicuisine Restaurant</h1>
+                        <h2 className="p-5 d-block d-md-none text-center" >A Multicuisine Restaurant</h2>
+                        <MenuCarousel />
+                        <div className="col-8 p-2 d-flex justify-content-center">
+                            <HashLink smooth to="/menu/#menu" scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+                                <button className="button col-12">
+                                    <Trigger >
+                                        <span className="button-content">Full Menu</span>  
+                                        <DiagonalSwipe></DiagonalSwipe> 
+                                    </Trigger>
+                                </button>
+                            </HashLink>
+                        </div>
+                        <h4 className="text-center"><em>"We think we’re in love, made to perfection and a perfect fuel to start with."</em></h4>
+                        <Link to="introView" smooth={true} offset={-12} duration={600} className="text-center mt-4">
+                            <i className="fa fa-arrow-down fa-lg" aria-hidden="true"></i>
+                        </Link>
+                        
                     </div>
-                    <h4 className="text-center"><em>"We think we’re in love, made to perfection and a perfect fuel to start with."</em></h4>
-                    <Link to="introView" smooth={true} offset={-12} duration={600} className="text-center mt-4">
-                        <i className="fa fa-arrow-down fa-lg" aria-hidden="true"></i>
-                    </Link>
-                    
                 </div>
             </div>
             <section name="introView" className="intro-view mt-3 overlay-white">
                 <h1 className="text-center italic golden top-spacing bottom-spacing" >-- Dynamic Flavours --</h1>
                 <div className="view">
                     <div className="view-alignment">
-                        <div className="intro-view1">
-                            <Slide triggerOnce delay={1000}>
-                                <img src='https://i.ibb.co/g4qk5NS/intro-view1.jpg' alt="img"/>
-                            </Slide>
-                        </div>
-                        <div className="intro-view2">
-                            <Slide triggerOnce delay={1000}>
-                                <img src='https://i.ibb.co/qrbgMDj/intro-view2.jpg' alt="img"/>
-                            </Slide>
-                        </div>
-                        <div className="intro-view3" >
-                            <Slide triggerOnce delay={1000}>
-                                <img src='https://i.ibb.co/1qfdWvq/intro-view3.jpg' alt="img"/>
-                            </Slide>
-                        </div>
+                        <Fade cascade triggerOnce duration={2000} fraction={0}>
+                            <div className="intro-view1">
+                                <img src='/assets/images/intro-view1.jpg' alt="img"/>
+                            </div>
+                            <div className="intro-view2">
+                                <img src='/assets/images/intro-view2.jpg' alt="img"/>
+                            </div>
+                            <div className="intro-view3" >
+                                <img src='/assets/images/intro-view3.jpg' alt="img"/>
+                            </div>
+                        </Fade>
                     </div>
                     <h3 className="intro-text text-center d-md-none">Eat food, eat healthy!</h3>
                 </div>
@@ -277,15 +256,15 @@ function Home(props) {
                         <h3 className="text-center px-5 bottom-spacing">Ullamco commodo id quis do exercitation anim labore velit duis nisi ullamco officia sunt proident. Laborum aliquip ea anim reprehenderit veniam incididunt.</h3>
                     </Col>
                     <Col className="col-12 col-md-6 p-0 top-spacing">
-                        <Slide direction="right" triggerOnce delay={1000}>
-                            <img className="img-fluid" src="https://i.ibb.co/4tHHmh8/Home-Breakfast-4.jpg" alt="img" />
+                        <Slide direction="right" triggerOnce delay={1000} fraction={0}>
+                            <img className="img-fluid" src="/assets/images/Home_Breakfast_4.jpg" alt="img" />
                         </Slide>
                     </Col>
                 </Row>
                 <Row className="know-more" name="lunch">
                     <Col className="col-12 col-md-6 p-0 bottom-spacing">
-                        <Slide triggerOnce delay={1000}>
-                            <img className="img-fluid" src="https://i.ibb.co/V2RmvnF/Home-Lunch-7.jpg.jpg" alt="img" />
+                        <Slide triggerOnce delay={1000} fraction={0}>
+                            <img className="img-fluid" src="assets/images/Home_Lunch_7.jpg" alt="img" />
                         </Slide>
                     </Col>
                     <Col className="col-12 col-md-6 p-0 center-alignment">
@@ -301,8 +280,8 @@ function Home(props) {
                         <h3 className="text-center px-5 bottom-spacing">Ullamco commodo id quis do exercitation anim labore velit duis nisi ullamco officia sunt proident. Laborum aliquip ea anim reprehenderit veniam incididunt.</h3>
                     </Col>
                     <Col className="col-12 col-md-6 p-0">
-                        <Slide direction="right" triggerOnce delay={1000}>
-                            <img className="img-fluid" src="https://i.ibb.co/M6SCcqD/Home-Dinner-3.jpg" alt="img" />
+                        <Slide direction="right" triggerOnce delay={1000} fraction={0}>
+                            <img className="img-fluid" src="/assets/images/Home_Dinner_3.jpg" alt="img" />
                         </Slide>
                     </Col>
                 </Row>

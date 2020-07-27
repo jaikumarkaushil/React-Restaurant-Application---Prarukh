@@ -1,10 +1,12 @@
-// 2.1 this file will contain/store all the state properties for all the child components
-import React, { Component } from 'react';
-import Home from './HomeComponent';
-import Menu from './MenuComponent';
-import About from './AboutComponent';
+/* eslint-disable import/first */
+import React, { Component, Suspense } from 'react';
+const Home = React.lazy(() => import('./HomeComponent'));
+const Menu = React.lazy(() => import('./MenuComponent'));
+const About = React.lazy(() => import('./AboutComponent'));
+const Footer = React.lazy(() => import('./FooterComponent'));
+import { Loading } from './LoadingComponent';
 import Header from './HeaderComponent';
-import Footer from './FooterComponent';
+import Dishdetail from './DishdetailComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'; // w3.3.4redux
 import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -14,6 +16,8 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { postReservation, postFeedback, postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';  //redux action 4
 
 import { actions } from 'react-redux-form';
+
+
 
 const mapStateToProps = state => {
     return {
@@ -48,8 +52,8 @@ class Main extends Component {
   }
   // redux thunk 7, add the dishesLoading, dishesErrMess for homepage, having multiple dishes and isLoading and errMess for single dish in the dishdetail component 
   render() {
+    
     const HomePage = () => {
-      
       return(
         <Home 
               dishes={this.props.dishes.dishes}
@@ -62,41 +66,43 @@ class Main extends Component {
       );
     }
 
-    // const DishWithId = ({match}) => {
-    //   return (
-    //     <Dishdetail 
-    //         dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
-    //         isLoading={this.props.dishes.isLoading} // isLoading is perfectly fine here since we are using only one dish here
-    //         errMess={this.props.dishes.errMess}
-    //         comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
-    //         commentsErrMess={this.props.comments.errMess}
-    //         postComment={this.props.postComment}
-    //     />
-    //     )
-    // }
+    const DishWithId = ({match}) => {
+      return (
+        <Dishdetail 
+            dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+            isLoading={this.props.dishes.isLoading}
+            errMess={this.props.dishes.errMess}
+            comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
+            commentsErrMess={this.props.comments.errMess}
+            postComment={this.props.postComment}
+        />
+        )
+    }
 
     return (
       <div>
         <Header />
-        <TransitionGroup>
-          <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
-            <Switch>
-              <Route path="/home" component={HomePage} /> {/*w2.4 Configuring the route for home*/}
-              <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes.dishes}
-                                                              dishesLoading={this.props.dishes.isLoading}
-                                                              dishesErrMess={this.props.dishes.errMess}
-                                                              resetReservationForm={this.props.resetReservationForm} 
-                                                              postReservation={this.props.postReservation}
-                                                              comments={this.props.comments.comments} 
-                                                              commentsErrMess={this.props.comments.errMess}
-                                                              postComment={this.props.postComment}
-                                                              />} />
-              {/* <Route path="/menu/:dishId" component={DishWithId} /> */}
-              <Route path="/aboutus" component={() => <About leaders={this.props.leaders} />} /> 
-              <Redirect to="/home"/>
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
+        <Suspense fallback={<Loading/>}>
+          <TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+              <Switch>
+                <Route path="/home" component={HomePage} /> {/*w2.4 Configuring the route for home*/}
+                <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes.dishes}
+                                                                dishesLoading={this.props.dishes.isLoading}
+                                                                dishesErrMess={this.props.dishes.errMess}
+                                                                resetReservationForm={this.props.resetReservationForm} 
+                                                                postReservation={this.props.postReservation}
+                                                                comments={this.props.comments.comments} 
+                                                                commentsErrMess={this.props.comments.errMess}
+                                                                postComment={this.props.postComment}
+                                                                />} />
+                <Route path="/menu/:dishId" component={DishWithId} />
+                <Route path="/aboutus" component={() => <About leaders={this.props.leaders} />} /> 
+                <Redirect to="/home"/>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        </Suspense>
         <Footer />      
       </div>
     );
