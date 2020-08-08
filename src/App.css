@@ -528,7 +528,7 @@ header .bm-menu {
 /* Popular Dishes */
 .popular_dishes_cover {
     height:100vh;
-    background-image: url("/assets/images/Home-Cover2jpg.jpg");
+    background-image: url("/assets/images/AboutUsCover.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -574,7 +574,9 @@ header .bm-menu {
 /* About */
 .chefs {
     position: absolute;
-    top:35.7vh;
+    max-width:1200px;
+    width: 100%;
+    top:71.4vh;
     z-index: 15;
     left:50%;
     transform:translate(-50%, 0);
@@ -582,16 +584,23 @@ header .bm-menu {
 .chefs .card {
     height: 420px;
 }
-@media screen and (max-width: 768px){
-    .chefs .card {
-        height: 360px;
-    }
-}
 .chefs .card-img-top {
     height: 28.5vh;
     object-fit: cover;
 }
 @media screen and (max-width: 768px){
+    .chefs .card {
+        height: 380px;
+    }
+    .chefs .card-img-top {
+        height: 30.8vh;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .chefs .card {
+        height: 260px;
+    }
     .chefs .card-img-top {
         height: 30.8vh;
     }

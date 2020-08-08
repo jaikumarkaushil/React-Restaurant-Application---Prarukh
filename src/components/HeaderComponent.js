@@ -88,8 +88,8 @@ class Header extends Component {
             </Form>
         </ModalBody>
       </Modal>
-      <Menu width={"400px"} noOverlay isOpen={this.state.isMenuOpen} onClick={this.toggleMenu}
-      onStateChange={(state) => this.handleStateChange(state)} disableAutoFocus>
+      <Menu width={"300px"} noOverlay isOpen={this.state.isMenuOpen} onClick={this.toggleMenu}
+      onStateChange={(state) => this.handleStateChange(state)}>
           <Nav vertical className="navlinkStyle">
               <h1 className="mt-4">Prarukh</h1>
               <hr/>

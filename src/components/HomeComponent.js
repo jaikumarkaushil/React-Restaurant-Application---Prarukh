@@ -20,8 +20,9 @@ const MenuCarousel = () => {
     var settings = {
         slidesToShow: 3,
         slidesToScroll: 1,
-        speed: 500,
-        pauseOnHover: true,
+        speed: 1000,
+        autoplay: true,
+        autoplaySpeed: 2000,
         responsive: [
             {
             breakpoint: 1000,
@@ -31,7 +32,6 @@ const MenuCarousel = () => {
                 speed: 1000,
                 autoplay: true,
                 autoplaySpeed: 2000,
-                pauseOnHover: true
                 }
             }
         ]

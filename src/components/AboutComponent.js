@@ -27,8 +27,8 @@ function RenderLeader({leader, isLoading, errMess}) {
     }
     else
         return (
-            <Card key={leader.id} className="mx-xl-4 mx-lg-3 mx-1" >
-                <CardImg width="100%" height="300vh" top src={leader.image} alt={leader.name} />
+            <Card key={leader.id} className="mx-xl-2 mx-lg-3">
+                <CardImg width="100%" top={true} src={leader.image} alt={leader.name} />
                 <CardBody >
                     <CardTitle><h3>{leader.name}</h3></CardTitle>
                     <CardText className="d-none d-md-block">{leader.description}</CardText>
@@ -43,7 +43,7 @@ function LeaderList(props) {
         slidesToScroll: 1,
         responsive: [
             {
-            breakpoint: 768,
+            breakpoint: 780,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -83,7 +83,7 @@ function LeaderList(props) {
     }
     else
         return(
-            <Slider {...settings} className="container chefs">
+            <Slider {...settings}>
                 {leaders}
             </Slider>
         );
@@ -118,7 +118,7 @@ function About(props) {
                         </div>
                     </div>
                 </div>
-                <div className="center-alignment chefs">
+                <div className="chefs">
                     <LeaderList leaders={props.leaders} />
                 </div>
             </div>
